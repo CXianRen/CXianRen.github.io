@@ -2,6 +2,7 @@
 <html lang="en-us">
 
 <head>
+    <meta charset="UTF-8">
     <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="css/blog.css">
 
@@ -23,22 +24,106 @@
     <script src="scripts/md/lib/jquery.flowchart.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/blog.css">
+    <style>
+        .main_page {
+            font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .title {
+            color: rgb(60, 60, 60);
+            font-size: 4.5em;
+            width: 50%;
+            margin-bottom: 1%;
+        }
+
+        .title::after {
+            content: '';
+            height: 1px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            margin-bottom: 10px;
+            max-width: 1000px;
+            align-items: center;
+        }
+
+        .sub_title_container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2%;
+        }
+
+        .sub_title {
+            font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
+            ;
+            font-size: 3em;
+            color: rgb(70, 70, 70);
+        }
+
+        .title_time {
+
+            color: rgb(180, 177, 177);
+            margin-top: -20px;
+
+        }
+
+        .main_footer {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            text-align: center;
+        }
+
+        .main_footer::before {
+            content: '';
+            height: 1px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+            align-content: center;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="header">
-        <h1 style="margin-left: 20px; margin-bottom: 0px;"><a href="https://cxianren.github.io/">闲人 > CXR</a></h1>
-        <a style="margin-left: 30px;" href="https://github.com/CXianRen">Github</a><a
-            style="margin-left: 10px; color: #ccc;">|</a>
-        <a style="margin-left: 30px;">me</a>
-        <hr>
-    </div>
-    <div class="container">
+    <div class="main_page">
+        <h1 class="title">闲人 Cxr</h1>
+        <div>
+            <div class="sub_title_container">
+                <a class="sub_title" href="https://github.com/CXianRen">Journal</a>
+                <a class=" title_time"> 07 21 2021</a>
+            </div>
+
+            <div class="sub_title_container">
+                <a class="sub_title" href="https://github.com/CXianRen">Project</a>
+                <a class=" title_time"> 07 21 2021</a>
+            </div>
+
+            <div class="sub_title_container">
+                <a class="sub_title" href="https://github.com/CXianRen">GitHub</a>
+                <a class=" title_time"> 07 21 2021</a>
+            </div>
+
+            <div class="sub_title_container">
+                <a class="sub_title" href="me.html">AboutMe</a>
+                <a class=" title_time"> 07 21 2021</a>
+            </div>
+
+            <!-- <div class="sub_title_container">
+                <a class="sub_title" href="https://github.com/CXianRen">Note</a>
+                <a class=" title_time"> 07 21 2021</a>
+            </div> -->
+        </div>
+        <div class="main_footer">
+            <p>今日翻书 明日数钱</p>
+            <p style="margin-top: -10px;"> 04 11 2021 V2 </p>
+        </div>
 
     </div>
-    <div class="footer">
-        <p>今日读书 明日数钱</p>
-    </div>
+
 </body>
 <script>
     TOKEN_1 = "ghp_gVlYIPaQhJkOWJ"
@@ -72,6 +157,7 @@
         $(".posts").append(a);
         a = "";
     }
+
     // load all post 
     load_page = 0;
     myposts = [];
@@ -80,6 +166,15 @@
     current_list = [];
     current_index = -1;
 
+    function load_postlist() {
+        $.get("postlist.json", function (data, status) {
+            console.log(data)
+            for (var id in data) {
+                console.log("F")
+                main_page_render(id, data[id])
+            }
+        })
+    }
 
     function load_all_post_info(callback) {
         console.log("loading page name");
@@ -166,15 +261,6 @@
         $(".container").load("template/mainpage.html",
             function () {
                 console.log("main page loaded ");
-                load_all_post_info(function () {
-                    for (var index in myposts) {
-                        var mypost = myposts[index]
-                        // console.log(mypost);
-                        main_page_render(index, mypost)
-                    };
-                    current_list = myposts;
-                    current_index = -1;
-                })
             })
     };
     // load post
@@ -261,8 +347,8 @@
             }
         });
 
-        load_mainpage();
-
+        //load_mainpage();
+        //load_postlist();
     });
 </script>
 
