@@ -4,26 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="css/blog.css">
-
     <meta http-equiv="Cache-Control" content="no-store" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-
-    <link href="scripts/md/css/editormd.preview.css" rel="stylesheet" />
-    <link href="scripts/md/css/editormd.css" rel="stylesheet" />
-
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-    <script src="scripts/md/editormd.js"></script>
-    <script src="scripts/md/lib/marked.min.js"></script>
-    <script src="scripts/md/lib/prettify.min.js"></script>
-    <script src="scripts/md/lib/raphael.min.js"></script>
-    <script src="scripts/md/lib/underscore.min.js"></script>
-    <script src="scripts/md/lib/sequence-diagram.min.js"></script>
-    <script src="scripts/md/lib/flowchart.min.js"></script>
-    <script src="scripts/md/lib/jquery.flowchart.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="css/blog.css">
     <style>
         .main_page {
             font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
@@ -37,7 +20,7 @@
             color: rgb(60, 60, 60);
             font-size: 4.5em;
             width: 50%;
-            margin-bottom: 1%;
+            margin-bottom: 3%;
         }
 
         .title::after {
@@ -53,20 +36,26 @@
         .sub_title_container {
             display: flex;
             flex-direction: column;
-            margin-bottom: 2%;
+            margin-bottom: 15%;
+
         }
 
         .sub_title {
             font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
-            ;
             font-size: 3em;
             color: rgb(70, 70, 70);
+            text-decoration: none;
+        }
+
+        .sub_title:hover,
+        .sub_title:focus {
+            text-decoration: underline;
         }
 
         .title_time {
 
             color: rgb(180, 177, 177);
-            margin-top: -20px;
+            margin-top: 5px;
 
         }
 
@@ -93,7 +82,7 @@
         <h1 class="title">闲人 Cxr</h1>
         <div>
             <div class="sub_title_container">
-                <a class="sub_title" href="https://github.com/CXianRen">Journal</a>
+                <a class="sub_title" href="post.html">Journal</a>
                 <a class=" title_time"> 07 21 2021</a>
             </div>
 
@@ -112,10 +101,6 @@
                 <a class=" title_time"> 07 21 2021</a>
             </div>
 
-            <!-- <div class="sub_title_container">
-                <a class="sub_title" href="https://github.com/CXianRen">Note</a>
-                <a class=" title_time"> 07 21 2021</a>
-            </div> -->
         </div>
         <div class="main_footer">
             <p>今日翻书 明日数钱</p>
@@ -123,233 +108,6 @@
         </div>
 
     </div>
-
 </body>
-<script>
-    TOKEN_1 = "ghp_gVlYIPaQhJkOWJ"
-    TOKEN_2 = "vZEbdktP3zbfL7U3BVgbd"
-    // markdown 转 html 
-    function mdToHml(content) {
-        //先对容器初始化，在需要展示的容器中创建textarea隐藏标签，
-        $("#testEditorMdview").html('<textarea id="appendTest" style="display:none;"></textarea>');
-        $("#appendTest").val(content); //将需要转换的内容加到转换后展示容器的textarea隐藏标签中
-
-        editormd.markdownToHTML("testEditorMdview", {
-            htmlDecode: "style,script,iframe", //可以过滤标签解码
-            emoji: true,
-            taskList: true,
-            tex: true, // 默认不解析
-            flowChart: true, // 默认不解析
-            sequenceDiagram: true, // 默认不解析
-        });
-    };
-
-    //  main page post render 
-    function main_page_render(id, postinf) {
-        var a = '<div class="post">';
-        a += '<h2 class="post-title">';
-        a += '<a class="ti" id=' + id + '>' + postinf["name"] + '</a>';
-        a += '</h2>';
-        a += '<span class="post-date">' + postinf["time"] + '</span>';
-        a += '<span class="post-tags"><a class="post_class">' + postinf["class"] + '</a> <a>|</a><a class="post_tag">' +
-            postinf["tag"] + '</a> </span>';
-        a += '</div>';
-        $(".posts").append(a);
-        a = "";
-    }
-
-    // load all post 
-    load_page = 0;
-    myposts = [];
-    myposts_in_class = {};
-    myposts_in_tag = {};
-    current_list = [];
-    current_index = -1;
-
-    function load_postlist() {
-        $.get("postlist.json", function (data, status) {
-            console.log(data)
-            for (var id in data) {
-                console.log("F")
-                main_page_render(id, data[id])
-            }
-        })
-    }
-
-    function load_all_post_info(callback) {
-        console.log("loading page name");
-        $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/?private_token=" + TOKEN_1 + "x" +
-            TOKEN_2,
-            function (data, status) {
-                for (_item in data) {
-                    (function (item) {
-                        // to get time of an post and push into buff
-                        // some bug here
-                        var temp = data[item]["name"].split(".")[0].split("_");
-                        console.log("name:", data[item]["name"])
-                        $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/commits?private_token=" +
-                            TOKEN_1 + "x" +
-                            TOKEN_2, "&path = post / " +
-                            data[item]["name"] + "&page=1&per_page=1",
-                            function (sdata, status) {
-                                try {
-                                    console.log(data[item]["name"], sdata[0]["commit"]["committer"]["date"])
-                                    sdata = sdata[0]["commit"]["committer"]["date"]
-                                    var time = new Date();
-                                    var time_YYMMDD = sdata.split("T")[0].split("-");
-                                    var time_HHMMSS = sdata.split("T")[1].split("Z")[0].split(":")
-                                    time.setFullYear(time_YYMMDD[0], time_YYMMDD[1], time_YYMMDD[2]);
-                                    time.setHours(time_HHMMSS[0], time_HHMMSS[1], time_HHMMSS[2]);
-                                    myposts.push({
-                                        "url": data[item]["name"],
-                                        "name": temp[0],
-                                        "class": temp[1],
-                                        "tag": temp[2],
-                                        "time": time
-                                    });
-
-                                    if (myposts_in_class[temp[1]] === undefined) {
-                                        console.log("undefine");
-                                        myposts_in_class[temp[1]] = new Array();
-                                    }
-                                    myposts_in_class[temp[1]].push({
-                                        "url": data[item]["name"],
-                                        "name": temp[0],
-                                        "class": temp[1],
-                                        "tag": temp[2],
-                                        "time": time
-                                    });
-
-                                    if (myposts_in_tag[temp[2]] === undefined) {
-                                        myposts_in_tag[temp[2]] = new Array();
-                                    }
-                                    myposts_in_tag[temp[2]].push({
-                                        "url": data[item]["name"],
-                                        "name": temp[0],
-                                        "class": temp[1],
-                                        "tag": temp[2],
-                                        "time": time
-                                    });
-
-                                    myposts.sort(function (a, b) {
-                                        a["time"] - b["time"]
-                                    })
-                                    // myposts_in_class.sort(function (a, b) {
-                                    //     a["time"] - b["time"]
-                                    // })
-                                    // myposts_in_tag.sort(function (a, b) {
-                                    //     a["time"] - b["time"]
-                                    // })
-                                    $(".posts").empty()
-                                    callback();
-                                } catch (error) {
-                                    console.log(temp[0], "request error")
-                                }
-                            })
-                    })(_item);
-
-                    // console.log("type:"+typeof(myposts_in_class[temp[1]]))
-
-
-                }
-                console.log(myposts);
-            }
-        );
-    }
-    // load main page
-    function load_mainpage() {
-        $(".container").load("template/mainpage.html",
-            function () {
-                console.log("main page loaded ");
-            })
-    };
-    // load post
-    function load_post(id) {
-        $(".container").empty();
-
-        $(".container").load("template/post.html",
-            function () {
-                console.log("loading container");
-                $.get("post/" + current_list[id]["url"], function (data, status) {
-                    $(".post-title a ").text(current_list[id]["name"]);
-                    $(".post-date").text(current_list[id]["time"]);
-                    $(".ca").text(current_list[id]["class"]);
-                    $(".ta").text(current_list[id]["tag"]);
-                    // 渲染 readme
-                    mdToHml(data);
-                })
-            })
-    }
-
-    $(document).ready(function () {
-        // 点击分类加载对应列表
-        $(".container").on("click", ".post_class", function () {
-            // new Promise(function (resolve, reject) {
-            console.log("clean container");
-            $(".posts").empty();
-            // resolve();
-            // }).then(function () {
-            console.log("new content");
-            console.log($(this).text());
-            current_list = myposts_in_class[$(this).text()];
-            current_index = -1;
-            for (var index in current_list) {
-                var mypost = current_list[index];
-                console.log(index, mypost);
-                main_page_render(index, mypost);
-            };
-        });
-
-        $(".container").on("click", ".post_tag", function () {
-            // new Promise(function (resolve, reject) {
-            console.log("clean container");
-            $(".posts").empty();
-            // resolve();
-            // }).then(function () {
-            console.log("new content");
-            console.log($(this).text());
-            current_list = myposts_in_tag[$(this).text()];
-            current_index = -1;
-            for (var index in current_list) {
-                var mypost = current_list[index];
-                console.log(index, mypost);
-                main_page_render(index, mypost);
-            };
-            // })
-
-        });
-
-        // 点击加载对应文章 (预先绑定事件)
-        $(".container").on("click", ".ti", function () {
-            var index = Number($(this).attr("id"));
-            console.log("clik:" + index);
-            current_index = index;
-            load_post(index);
-        });
-        // 前后 按键绑定事件
-        $(".container").on("click", ".previous", function () {
-            if (current_index - 1 >= 0) {
-                current_index -= 1;
-                console.log(current_index);
-                load_post(current_index);
-            } else {
-                console.log("no more post")
-            }
-        });
-
-        $(".container").on("click", ".next", function () {
-            if (current_index + 1 <= current_list.length - 1) {
-                current_index += 1;
-                console.log(current_index);
-                load_post(current_index);
-            } else {
-                console.log("no more post")
-            }
-        });
-
-        //load_mainpage();
-        //load_postlist();
-    });
-</script>
 
 </html>
