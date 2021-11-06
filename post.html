@@ -133,7 +133,7 @@
 
         .post_name {
             color: black;
-            font-size: 2.5em;
+            font-size: 1.7em;
         }
 
         .post_info {
@@ -141,7 +141,7 @@
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
-            margin-top: -15px;
+            margin-top: -5px;
         }
 
         .post_info a {
@@ -150,6 +150,7 @@
 
         .post_item_container {
             margin-bottom: 10px;
+            font-family: 'Raleway', sans-serif;
         }
 
         .pagination {
@@ -270,19 +271,13 @@
         a = "";
     }
 
-    // load all post 
-    load_page = 0;
-    myposts = [];
-    myposts_in_class = {};
-    myposts_in_tag = {};
-    current_list = [];
-    current_index = -1;
-
     post_list = {};
     post_len = 0;
     current_page_index = 0;
     // max page_item_eachpage
-    max_pi_ep = 8;
+    max_pi_ep = 10;
+    tag_list = {};
+    class_list = {};
 
     function render_post_list(data, page) {
         $(".post_item_container").empty()
@@ -304,6 +299,7 @@
             post_list = data
             post_len = Object.keys(data).length
             post_pages = Math.ceil(post_len / max_pi_ep) - 1
+
             render_post_list(post_list, 0)
         })
     }
