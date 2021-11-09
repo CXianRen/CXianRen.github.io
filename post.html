@@ -256,8 +256,8 @@
     //  main page post render 
     function main_page_render(id, postinf) {
         let a =
-            `<div class="post_item" id=${id}>\
-                <a class="post_name">${postinf["name"]}</a>\
+            `<div class="post_item">\
+                <a class="post_name" id=${id}>${postinf["name"]}</a>\
                 <div class="post_info">\
                     <a class="post_time">${postinf["time"]}</a>\
                     <a class="post_tag">${postinf["tag"]}</a>\
@@ -286,7 +286,7 @@
         for (var _tid = 0; _tid <= max_pi_ep; _tid++) {
             if (_tid + offset < post_len) {
                 console.log("" + (_tid + offset))
-                main_page_render(_tid + offset, data[key_list[_tid + offset]])
+                main_page_render(key_list[_tid + offset], data[key_list[_tid + offset]])
             } else {
                 break;
             }
@@ -329,93 +329,6 @@
         })
     }
 
-    function load_all_post_info(callback) {
-        console.log("loading page name");
-        $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/?private_token=" + TOKEN_1 + "x" +
-            TOKEN_2,
-            function (data, status) {
-                for (_item in data) {
-                    (function (item) {
-                        // to get time of an post and push into buff
-                        // some bug here
-                        var temp = data[item]["name"].split(".")[0].split("_");
-                        console.log("name:", data[item]["name"])
-                        $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/commits?private_token=" +
-                            TOKEN_1 + "x" +
-                            TOKEN_2, "&path = post / " +
-                            data[item]["name"] + "&page=1&per_page=1",
-                            function (sdata, status) {
-                                try {
-                                    console.log(data[item]["name"], sdata[0]["commit"]["committer"]["date"])
-                                    sdata = sdata[0]["commit"]["committer"]["date"]
-                                    var time = new Date();
-                                    var time_YYMMDD = sdata.split("T")[0].split("-");
-                                    var time_HHMMSS = sdata.split("T")[1].split("Z")[0].split(":")
-                                    time.setFullYear(time_YYMMDD[0], time_YYMMDD[1], time_YYMMDD[2]);
-                                    time.setHours(time_HHMMSS[0], time_HHMMSS[1], time_HHMMSS[2]);
-                                    myposts.push({
-                                        "url": data[item]["name"],
-                                        "name": temp[0],
-                                        "class": temp[1],
-                                        "tag": temp[2],
-                                        "time": time
-                                    });
-
-                                    if (myposts_in_class[temp[1]] === undefined) {
-                                        console.log("undefine");
-                                        myposts_in_class[temp[1]] = new Array();
-                                    }
-                                    myposts_in_class[temp[1]].push({
-                                        "url": data[item]["name"],
-                                        "name": temp[0],
-                                        "class": temp[1],
-                                        "tag": temp[2],
-                                        "time": time
-                                    });
-
-                                    if (myposts_in_tag[temp[2]] === undefined) {
-                                        myposts_in_tag[temp[2]] = new Array();
-                                    }
-                                    myposts_in_tag[temp[2]].push({
-                                        "url": data[item]["name"],
-                                        "name": temp[0],
-                                        "class": temp[1],
-                                        "tag": temp[2],
-                                        "time": time
-                                    });
-
-                                    myposts.sort(function (a, b) {
-                                        a["time"] - b["time"]
-                                    })
-                                    // myposts_in_class.sort(function (a, b) {
-                                    //     a["time"] - b["time"]
-                                    // })
-                                    // myposts_in_tag.sort(function (a, b) {
-                                    //     a["time"] - b["time"]
-                                    // })
-                                    $(".posts").empty()
-                                    callback();
-                                } catch (error) {
-                                    console.log(temp[0], "request error")
-                                }
-                            })
-                    })(_item);
-
-                    // console.log("type:"+typeof(myposts_in_class[temp[1]]))
-
-
-                }
-                console.log(myposts);
-            }
-        );
-    }
-    // load main page
-    function load_mainpage() {
-        $(".container").load("template/mainpage.html",
-            function () {
-                console.log("main page loaded ");
-            })
-    };
     // load post
     function load_post(id) {
         $(".container").empty();
@@ -436,21 +349,9 @@
 
     $(document).ready(function () {
         // 点击分类加载对应列表
-        $(".container").on("click", ".post_class", function () {
-            // new Promise(function (resolve, reject) {
-            console.log("clean container");
-            $(".posts").empty();
-            // resolve();
-            // }).then(function () {
-            console.log("new content");
+        $(".container").on("click", ".post_name", function () {
             console.log($(this).text());
-            current_list = myposts_in_class[$(this).text()];
-            current_index = -1;
-            for (var index in current_list) {
-                var mypost = current_list[index];
-                console.log(index, mypost);
-                main_page_render(index, mypost);
-            };
+            window.open("post_detail.html?_id="+$(this).attr('id'))
         });
 
         // click a class 

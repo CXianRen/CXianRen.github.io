@@ -18,7 +18,7 @@ postlists = glob.glob("./post/*.md")
 id = 1
 for post in postlists:
     name_, class_, tag_, time_ = post.split("_")
-    url_ = name_
+    url_ = post
     name_ = name_.replace("./post/", '')
     time_ = time_.replace(".md", "")
     _tmp = dict()

@@ -75,6 +75,7 @@
         .left_container {
             display: flex;
             flex-direction: column;
+            font-family: 'Raleway', sans-serif;
             width: 30%;
         }
 
@@ -133,7 +134,7 @@
 
         .post_name {
             color: black;
-            font-size: 2.5em;
+            font-size: 1.7em;
         }
 
         .post_info {
@@ -141,7 +142,7 @@
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
-            margin-top: -15px;
+            margin-top: -5px;
         }
 
         .post_info a {
@@ -149,13 +150,15 @@
         }
 
         .post_item_container {
-            margin-bottom: 60px;
+            margin-bottom: 10px;
+            font-family: 'Raleway', sans-serif;
         }
 
         .pagination {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            margin-bottom: 20px;
         }
 
         .btn {
@@ -197,53 +200,6 @@
     <div class="main_page">
         <h1 class="title">闲人 Cxr</h1>
         <div class="container">
-            <div class=left_container>
-                <div class="class_container">
-                    <a class="class_title">Class</a>
-                    <a class="class">class 1</a>
-                    <a class="class">class 2</a>
-                    <a class="class">class 3</a>
-                </div>
-                <div class="class_container">
-                    <a class="class_title">Tag</a>
-                    <a class="class">Tag 1</a>
-                    <a class="class">Tag 2</a>
-                    <a class="class">Tag 3</a>
-                </div>
-            </div>
-            <div class=right_container>
-                <div class="post_item_container">
-                    <div class="post_item">
-                        <a class="post_name">post_name</a>
-                        <div class="post_info">
-                            <a class="post_time">20210701</a>
-                            <a class="post_tag">tag</a>
-                            <a class="post_class">class</a>
-                        </div>
-                    </div>
-                    <div class="post_item">
-                        <a class="post_name">post_name</a>
-                        <div class="post_info">
-                            <a class="post_time">20210701</a>
-                            <a class="post_tag">tag</a>
-                            <a class="post_class">class</a>
-                        </div>
-                    </div>
-                    <div class="post_item">
-                        <a class="post_name">post_name</a>
-                        <div class="post_info">
-                            <a class="post_time">20210701</a>
-                            <a class="post_tag">tag</a>
-                            <a class="post_class">class</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="pagination">
-                    <a class="btn previous">Prev</a>
-                    <a id="page_index"> 1/10</a>
-                    <a class="btn next"> Next</a>
-                </div>
-            </div>
         </div>
         <div class="main_footer">
             <p>今日翻书 明日数钱</p>
@@ -270,211 +226,41 @@
         });
     };
 
-    //  main page post render 
-    function main_page_render(id, postinf) {
-        var a = '<div class="post">';
-        a += '<h2 class="post-title">';
-        a += '<a class="ti" id=' + id + '>' + postinf["name"] + '</a>';
-        a += '</h2>';
-        a += '<span class="post-date">' + postinf["time"] + '</span>';
-        a += '<span class="post-tags"><a class="post_class">' + postinf["class"] + '</a> <a>|</a><a class="post_tag">' +
-            postinf["tag"] + '</a> </span>';
-        a += '</div>';
-        $(".posts").append(a);
-        a = "";
-    }
+    post_list_info = {};
 
-    // load all post 
-    load_page = 0;
-    myposts = [];
-    myposts_in_class = {};
-    myposts_in_tag = {};
-    current_list = [];
-    current_index = -1;
-
-    function load_postlist() {
-        $.get("postlist.json", function (data, status) {
-            console.log(data)
-            for (var id in data) {
-                console.log("F")
-                main_page_render(id, data[id])
-            }
-        })
-    }
-
-    function load_all_post_info(callback) {
-        console.log("loading page name");
-        $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/?private_token=" + TOKEN_1 + "x" +
-            TOKEN_2,
-            function (data, status) {
-                for (_item in data) {
-                    (function (item) {
-                        // to get time of an post and push into buff
-                        // some bug here
-                        var temp = data[item]["name"].split(".")[0].split("_");
-                        console.log("name:", data[item]["name"])
-                        $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/commits?private_token=" +
-                            TOKEN_1 + "x" +
-                            TOKEN_2, "&path = post / " +
-                            data[item]["name"] + "&page=1&per_page=1",
-                            function (sdata, status) {
-                                try {
-                                    console.log(data[item]["name"], sdata[0]["commit"]["committer"]["date"])
-                                    sdata = sdata[0]["commit"]["committer"]["date"]
-                                    var time = new Date();
-                                    var time_YYMMDD = sdata.split("T")[0].split("-");
-                                    var time_HHMMSS = sdata.split("T")[1].split("Z")[0].split(":")
-                                    time.setFullYear(time_YYMMDD[0], time_YYMMDD[1], time_YYMMDD[2]);
-                                    time.setHours(time_HHMMSS[0], time_HHMMSS[1], time_HHMMSS[2]);
-                                    myposts.push({
-                                        "url": data[item]["name"],
-                                        "name": temp[0],
-                                        "class": temp[1],
-                                        "tag": temp[2],
-                                        "time": time
-                                    });
-
-                                    if (myposts_in_class[temp[1]] === undefined) {
-                                        console.log("undefine");
-                                        myposts_in_class[temp[1]] = new Array();
-                                    }
-                                    myposts_in_class[temp[1]].push({
-                                        "url": data[item]["name"],
-                                        "name": temp[0],
-                                        "class": temp[1],
-                                        "tag": temp[2],
-                                        "time": time
-                                    });
-
-                                    if (myposts_in_tag[temp[2]] === undefined) {
-                                        myposts_in_tag[temp[2]] = new Array();
-                                    }
-                                    myposts_in_tag[temp[2]].push({
-                                        "url": data[item]["name"],
-                                        "name": temp[0],
-                                        "class": temp[1],
-                                        "tag": temp[2],
-                                        "time": time
-                                    });
-
-                                    myposts.sort(function (a, b) {
-                                        a["time"] - b["time"]
-                                    })
-                                    // myposts_in_class.sort(function (a, b) {
-                                    //     a["time"] - b["time"]
-                                    // })
-                                    // myposts_in_tag.sort(function (a, b) {
-                                    //     a["time"] - b["time"]
-                                    // })
-                                    $(".posts").empty()
-                                    callback();
-                                } catch (error) {
-                                    console.log(temp[0], "request error")
-                                }
-                            })
-                    })(_item);
-
-                    // console.log("type:"+typeof(myposts_in_class[temp[1]]))
-
-
-                }
-                console.log(myposts);
-            }
-        );
-    }
-    // load main page
-    function load_mainpage() {
-        $(".container").load("template/mainpage.html",
-            function () {
-                console.log("main page loaded ");
-            })
-    };
     // load post
     function load_post(id) {
         $(".container").empty();
-
-        $(".container").load("template/post.html",
-            function () {
-                console.log("loading container");
-                $.get("post/" + current_list[id]["url"], function (data, status) {
-                    $(".post-title a ").text(current_list[id]["name"]);
-                    $(".post-date").text(current_list[id]["time"]);
-                    $(".ca").text(current_list[id]["class"]);
-                    $(".ta").text(current_list[id]["tag"]);
-                    // 渲染 readme
-                    mdToHml(data);
+        $.get("postlist.json", function (data, status) {
+            post_list_info = data
+            console.log(post_list_info)
+            $(".container").load("template/post.html",
+                function () {
+                    console.log("loading container");
+                    $.get(post_list_info["all"][id]["url"], function (data, status) {
+                        $(".post-title a ").text(post_list_info["all"][id]["name"]);
+                        $(".post-date").text(post_list_info["all"][id]["time"]);
+                        $(".ca").text(post_list_info["all"][id]["class"]);
+                        $(".ta").text(post_list_info["all"][id]["tag"]);
+                        // 渲染 readme
+                        mdToHml(data);
+                    })
                 })
-            })
+        })
+    }
+
+    function getUrlParam(param) {
+        var reg = new RegExp("(^|&)" + param + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURI(r[2]);
+        return null;
     }
 
     $(document).ready(function () {
         // 点击分类加载对应列表
-        $(".container").on("click", ".post_class", function () {
-            // new Promise(function (resolve, reject) {
-            console.log("clean container");
-            $(".posts").empty();
-            // resolve();
-            // }).then(function () {
-            console.log("new content");
-            console.log($(this).text());
-            current_list = myposts_in_class[$(this).text()];
-            current_index = -1;
-            for (var index in current_list) {
-                var mypost = current_list[index];
-                console.log(index, mypost);
-                main_page_render(index, mypost);
-            };
-        });
-
-        $(".container").on("click", ".post_tag", function () {
-            // new Promise(function (resolve, reject) {
-            console.log("clean container");
-            $(".posts").empty();
-            // resolve();
-            // }).then(function () {
-            console.log("new content");
-            console.log($(this).text());
-            current_list = myposts_in_tag[$(this).text()];
-            current_index = -1;
-            for (var index in current_list) {
-                var mypost = current_list[index];
-                console.log(index, mypost);
-                main_page_render(index, mypost);
-            };
-            // })
-
-        });
-
-        // 点击加载对应文章 (预先绑定事件)
-        $(".container").on("click", ".ti", function () {
-            var index = Number($(this).attr("id"));
-            console.log("clik:" + index);
-            current_index = index;
-            load_post(index);
-        });
-        // 前后 按键绑定事件
-        $(".container").on("click", ".previous", function () {
-            if (current_index - 1 >= 0) {
-                current_index -= 1;
-                console.log(current_index);
-                load_post(current_index);
-            } else {
-                console.log("no more post")
-            }
-        });
-
-        $(".container").on("click", ".next", function () {
-            if (current_index + 1 <= current_list.length - 1) {
-                current_index += 1;
-                console.log(current_index);
-                load_post(current_index);
-            } else {
-                console.log("no more post")
-            }
-        });
-
-        // load_mainpage();
-        // load_postlist();
+        _id = getUrlParam("_id")
+        console.log(_id)
+        load_post(_id)
     });
 </script>
 
