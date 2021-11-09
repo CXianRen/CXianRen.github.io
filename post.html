@@ -75,6 +75,7 @@
         .left_container {
             display: flex;
             flex-direction: column;
+            font-family: 'Raleway', sans-serif;
             width: 30%;
         }
 
@@ -200,17 +201,13 @@
         <h1 class="title">闲人 Cxr</h1>
         <div class="container">
             <div class=left_container>
-                <div class="class_container" id="class">
+                <div class="class_container" id="class_container">
                     <a class="class_title">Class</a>
-                    <a class="class">class 1</a>
-                    <a class="class">class 2</a>
-                    <a class="class">class 3</a>
+                    <!-- <a class="class">class 1</a> -->
                 </div>
-                <div class="class_container" id="tag">
+                <div class="class_container" id="tag_container">
                     <a class="class_title">Tag</a>
-                    <a class="class">Tag 1</a>
-                    <a class="class">Tag 2</a>
-                    <a class="class">Tag 3</a>
+                    <!-- <a class="class">Tag 1</a> -->
                 </div>
             </div>
             <div class=right_container>
@@ -271,22 +268,25 @@
         a = "";
     }
 
+    post_list_info = {};
     post_list = {};
     post_len = 0;
     current_page_index = 0;
     // max page_item_eachpage
-    max_pi_ep = 10;
-    tag_list = {};
-    class_list = {};
+    max_pi_ep = 8;
+    tag_list = [];
+    class_list = [];
 
     function render_post_list(data, page) {
         $(".post_item_container").empty()
         var offset = page * max_pi_ep < post_len ? page * max_pi_ep : post_len
         console.log("offset", offset)
-        for (var _tid = 1; _tid <= max_pi_ep; _tid++) {
+        key_list = Object.keys(data)
+        console.log(key_list)
+        for (var _tid = 0; _tid <= max_pi_ep; _tid++) {
             if (_tid + offset < post_len) {
                 console.log("" + (_tid + offset))
-                main_page_render(_tid + offset, data[_tid + offset])
+                main_page_render(_tid + offset, data[key_list[_tid + offset]])
             } else {
                 break;
             }
@@ -294,12 +294,37 @@
         $("#page_index").text(`${current_page_index}/${post_pages}`)
     }
 
+    function render_tags() {
+        tag_list.forEach(function (tag) {
+            let a =
+                `<a class="class tag_">${tag}</a>`;
+            $("#tag_container").append(a);
+            a = "";
+        })
+    }
+
+    function render_classes() {
+        class_list.forEach(function (tag) {
+            let a =
+                `<a class="class class_">${tag}</a>`;
+            $("#class_container").append(a);
+            a = "";
+        })
+    }
+
     function load_postlist() {
         $.get("postlist.json", function (data, status) {
-            post_list = data
-            post_len = Object.keys(data).length
+            post_list_info = data
+            post_list = post_list_info["all"]
+            post_len = Object.keys(post_list).length
             post_pages = Math.ceil(post_len / max_pi_ep) - 1
+            current_page_index = 0
 
+            tag_list = Object.keys(data["tags"])
+            console.log(tag_list)
+            class_list = Object.keys(data["classes"])
+            render_tags()
+            render_classes()
             render_post_list(post_list, 0)
         })
     }
@@ -428,31 +453,24 @@
             };
         });
 
-        $(".container").on("click", ".post_tag", function () {
-            // new Promise(function (resolve, reject) {
-            console.log("clean container");
-            $(".posts").empty();
-            // resolve();
-            // }).then(function () {
-            console.log("new content");
-            console.log($(this).text());
-            current_list = myposts_in_tag[$(this).text()];
-            current_index = -1;
-            for (var index in current_list) {
-                var mypost = current_list[index];
-                console.log(index, mypost);
-                main_page_render(index, mypost);
-            };
-            // })
-
+        // click a class 
+        $(".container").on("click", ".class_", function () {
+            post_list = post_list_info["classes"][$(this).text()]
+            console.log($(this).text())
+            post_len = Object.keys(post_list).length
+            post_pages = Math.ceil(post_len / max_pi_ep) - 1
+            current_page_index = 0
+            render_post_list(post_list, 0)
         });
 
-        // 点击加载对应文章 (预先绑定事件)
-        $(".container").on("click", ".ti", function () {
-            var index = Number($(this).attr("id"));
-            console.log("clik:" + index);
-            current_index = index;
-            load_post(index);
+        // click a tag
+        $(".container").on("click", ".tag_", function () {
+            post_list = post_list_info["tags"][$(this).text()]
+            console.log($(this).text())
+            post_len = Object.keys(post_list).length
+            post_pages = Math.ceil(post_len / max_pi_ep) - 1
+            current_page_index = 0
+            render_post_list(post_list, 0)
         });
         // 前后 按键绑定事件
         $(".container").on("click", ".previous", function () {
