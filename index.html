@@ -1,114 +1,203 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
-<head>
+<header>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
-    <meta http-equiv="Cache-Control" content="no-store" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <style>
-        .main_page {
-            font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .title {
-            color: rgb(60, 60, 60);
-            font-size: 4.5em;
-            width: 50%;
-            margin-bottom: 3%;
-        }
-
-        .title::after {
-            content: '';
-            height: 1px;
-            border-bottom: 1px solid #ccc;
-            display: flex;
-            margin-bottom: 10px;
-            max-width: 1000px;
-            align-items: center;
-        }
-
-        .sub_title_container {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 15%;
-
-        }
-
-        .sub_title {
-            font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
-            font-size: 3em;
-            color: rgb(70, 70, 70);
-            text-decoration: none;
-        }
-
-        .sub_title:hover,
-        .sub_title:focus {
-            text-decoration: underline;
-        }
-
-        .title_time {
-
-            color: rgb(180, 177, 177);
-            margin-top: 5px;
-
-        }
-
-        .main_footer {
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            align-content: center;
-            text-align: center;
-        }
-
-        .main_footer::before {
-            content: '';
-            height: 1px;
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 10px;
-            align-content: center;
-        }
-    </style>
-</head>
+    <link rel="stylesheet" type="text/css" href="css/blog.css">
+</header>
 
 <body>
-    <div class="main_page">
-        <h1 class="title">闲人 Cxr</h1>
-        <div>
-            <div class="sub_title_container">
-                <a class="sub_title" href="post.html">Journal</a>
-                <a class=" title_time"> 07 21 2021</a>
-            </div>
-
-            <div class="sub_title_container">
-                <a class="sub_title" href="">Project<a style="font-size: 16px;">coming
-                        soon</a></a>
-                <a class=" title_time"> 07 21 2021</a>
-            </div>
-
-            <div class="sub_title_container">
-                <a class="sub_title" href="https://github.com/CXianRen">GitHub</a>
-                <a class=" title_time"> 07 21 2021</a>
-            </div>
-
-            <div class="sub_title_container">
-                <a class="sub_title" href="">AboutMe<a style="font-size: 16px;">coming soon</a></a>
-                <a class=" title_time"> 07 21 2021</a>
-            </div>
-
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <div style="display: flex; flex-direction: row; justify-content: center; margin-bottom: 0px;">
+            <h1>Hongguang Chen </h1>
+            <h1 style="margin-left: 20px; margin-right: 20px; color: gray;"> | </h1>
+            <h1>Hal</h1>
         </div>
-        <div class="main_footer">
-            <p>今日翻书 明日数钱</p>
-            <p style="margin-top: -10px;"> 04 11 2021 V2 </p>
+        <div style="margin-top: -20px;">
+            <p class="contact-info" style="font-size: 15px">Email: chenhon@chalmers.se | chenhongguang@m.scnu.edu.cn
+            </p>
+        </div>
+        <div style="margin-top: -20px;">
+            <p style="font-size: 15px"> Tel: (China) +86-15625153858 (Sweden) +46-764510776</p>
         </div>
 
     </div>
-</body>
+    <ul class="timeline">
+        <!-- senior years -->
+        <!-- Item 1 -->
+        <!-- Sensen time -->
+        <li>
+            <div class="direction-l">
+                <div class="flag-wrapper">
+                    <span class="hexa"></span>
+                    <span class="flag">SenseTime MIG</span>
+                    <span class="time-wrapper"><span class="time">Oct 2018</span></span>
+                </div>
+                <div class="desc">
+                    <p>Intern researcher.</p>
+                    <p>The first step in my career.</p>
+                    <img src="img/other/first_day.jpg" , style="max-height: 200;">
+                </div>
+        </li>
+        <li>
+            <div class="direction-r">
+                <div class="flag-wrapper">
+                    <span class="hexa"></span>
+                    <span class="flag">Rover and Ranger prototype</span>
+                    <span class="time-wrapper"><span class="time">Dec 2018</span></span>
+                </div>
+                <div class="desc" ,>
+                    <p>Rover X prototype</p>
+                    <p style="font-size: small;">A straightforward 4-wheel platform that is compact yet highly
+                        functional,
+                        built on End-to-End learning. Our aim is to offer students a real-world environment
+                        in which they can apply their algorithms and policies.</p>
+                    <img src="img/roverX_prototype/rover_x_prototype.jpg" , style="max-height: 100;">
+                    <p>Ranger prototype</p>
+                    <p style="font-size: small;">Camera, lidar, ultrasonic, IMU, Raspberry pi</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="direction-r">
+                <div class="flag-wrapper">
+                    <span class="hexa"></span>
+                    <span class="flag">Mass production</span>
+                    <span class="time-wrapper"><span class="time">Feb 2019</span></span>
+                </div>
+                <div class="desc" ,>
+                    <p style="font-size: small;">we have made made a lot of efforts.</p>
+                    <p>Rover X</p>
+                    <img src="img/roverX/RoverX.jpg" , style="max-height: 200;">
+                    <p>Ranger</p>
+                    <img src="img/ranger/ranger.jpg" , style="max-height: 200;">
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="direction-r">
+                <div class="flag-wrapper">
+                    <span class="hexa"></span>
+                    <span class="flag">An Bigger Toy</span>
+                    <span class="time-wrapper"><span class="time">Feb-Mar 2019</span></span>
+                </div>
+                <div class="desc" ,>
+                    <!-- https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf -->
+                    <p> an bigger toy to present paper:<a
+                            href="https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf">End
+                            to End Learning for Self-Driving Cars
+                        </a>. it did work very well. A karting-size electromobile + nvidia TX2 + Logitech camera </p>
+                    <img src="img/honghong/honghong.jpg" , style="max-height: 100;">
+                </div>
+            </div>
+        </li>
+        <!-- graduation and JiMi -->
+        <li>
+            <div class="direction-l">
+                <div class="flag-wrapper">
+                    <span class="hexa"></span>
+                    <span class="flag">Graduated from SCNU</span>
+                    <span class="time-wrapper"><span class="time">May-July 2019</span></span>
+                    <div class="desc">In May, I completed my first internship and returned to university. Then, in July,
+                        I obtained my bachelor's degree in communications engineering from South China Normal
+                        University. I made the decision to kick off my second internship at a Factory 4.0 company, 
+                        where the focus is on smart pipelines and automated storage systems.
+                    </div>
+                </div>
+            </div>
+        </li>
 
-</html>
+        <li>
+            <div class="direction-r">
+                <div class="flag-wrapper">
+                    <span class="hexa"></span>
+                    <span class="flag">Image algorithm Engineer</span>
+                    <span class="time-wrapper"><span class="time">Jul-Dec 2019</span>
+                </div>
+                <div class="desc">Completed a machine vision recognition project designed for picking up electronic components
+                    <img src="img/smart_vga/smart_vga.jpg" , style="max-height: 250;">
+                </div>
+            </div>
+        </li>
+
+        <li>
+            <div class="direction-l">
+                <div class="flag-wrapper">
+                    <span class="hexa"></span>
+                    <span class="flag">SenseTime EIG</span>
+                    <span class="time-wrapper"><span class="time">July 2019</span></span>
+                </div>
+                <div class="desc">
+                    <p>At the invitation of my former leader, I have officially joined SenseTime.</p>
+                </div>
+            </div>
+        </li>
+        <!-- MINI -->
+        <li>
+            <div class="direction-r">
+                <div class="flag-wrapper">
+                    <span class="hexa"></span>
+                    <span class="flag">Rover Mini</span>
+                    <span class="time-wrapper"><span class="time">Dec/2019 - Feb/2020</span></span>
+                </div>
+                <div class="desc">
+                    <p>a programable toy, used to teach children python.</p>
+                    <img src="img/smart_vga/smart_vga.jpg" , style="max-height: 250;">
+                </div>
+            </div>
+        </li>
+
+        <li>
+            <div class="direction-r">
+                <div class="flag-wrapper">
+                    <span class="hexa"></span>
+                    <span class="flag">Rover Pro</span>
+                    <span class="time-wrapper"><span class="time">Dec/2019-Jun/2020</span></span>
+                </div>
+                <div class="desc">六轮车->3d打印车->黑色车->完整车->地图,视角</div>
+            </div>
+        </li>
+
+        <li>
+            <div class="direction-r">
+                <div class="flag-wrapper">
+                    <span class="hexa"></span>
+                    <span class="flag">Strom</span>
+                    <span class="time-wrapper"><span class="time">Dec/2019-Mar/2020</span></span>
+                </div>
+                <div class="desc">随便两张</div>
+            </div>
+        </li>
+
+        <li>
+            <div class="direction-r">
+                <div class="flag-wrapper">
+                    <span class="hexa"></span>
+                    <span class="flag">Innokit</span>
+                    <span class="time-wrapper"><span class="time">Jul/2020-April/2021</span></span>
+                </div>
+                <div class="desc">随便两张 + 平台图</div>
+            </div>
+        </li>
+
+        <li>
+            <div class="direction-r">
+                <div class="flag-wrapper">
+                    <span class="hexa"></span>
+                    <span class="flag">ZhongMing(Strom2)</span>
+                    <span class="time-wrapper"><span class="time">Sep/2020-April/2021</span></span>
+                </div>
+                <div class="desc">随便两张 + 平台图</div>
+            </div>
+        </li>
+
+        <li>
+            <div class="direction-l">
+                <div class="flag-wrapper">
+                    <span class="hexa"></span>
+                    <span class="flag">SenseTime to Inceptio</span>
+                    <span class="time-wrapper"><span class="time">April/2021</span></span>
+                </div>
+                <div class="desc">大车</div>
+            </div>
+        </li>
+    </ul>
+
+</body>
