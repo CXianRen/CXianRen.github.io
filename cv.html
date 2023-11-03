@@ -1,0 +1,686 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Hongguang Chen</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="387edd8b-ee95-432d-a3f1-5ca31fae201c" class="page sans"><header><h1 class="page-title">Hongguang Chen</h1><p class="page-description"></p></header><div class="page-body"><div id="37b4db06-2e43-4423-a7a0-71abfa9ff3bc" class="column-list"><div id="6c7fcc1d-7c55-4449-9112-7a1f7b64063d" style="width:25%" class="column"><h2 id="5ebc0d28-d4dc-4755-9c4e-030d5daacdaa" class="">Software development engineer</h2><p id="94091d74-c419-4391-84a0-005ab2454e30" class=""><strong><mark class="highlight-gray">Based in Shanghai</mark></strong></p><p id="cc5799ea-c4b9-4b13-beda-e58552ae2c02" class=""><strong>Email: </strong><strong><a href="mailto:chenhongguang@m.scnu.edu.cn">chenhongguang@m.scnu.edu.cn</a></strong><strong>   Tel:  </strong><a href="https://www.notion.sotel:15625153858"><strong>+86-15625153858</strong></a><strong>  </strong></p><p id="1c235e92-0625-43fb-b470-b9b4a3838f18" class="">
+</p></div><div id="780dfeba-3c69-4869-94a4-d7b5888cc72e" style="width:75%" class="column"><figure id="c2ee7f01-e334-4a76-9cf8-11cd0871ce3d" class="image"><a href="img/me.jpg"></a></figure><p id="adab2ad9-a9a8-4553-8e34-e89db626feea" class="">
+</p></div></div><h2 id="9ef3769f-1134-423f-ab58-50ad026b7bd0" class="">Education</h2><div id="225e26f9-60ec-4c46-9e56-6d60bec64fbf" class="column-list"><div id="f881971f-1f07-431d-9428-4a4b8a28d1ed" style="width:18.75%" class="column"><p id="dc5891f8-5e01-435a-bdfe-7a16fdbecc43" class=""> 2015 - 2019</p><p id="b40b68a1-9afd-4167-abd7-c0fca4cf8fb8" class=""> 2023- Now</p><p id="210b15f5-aefd-43bb-8487-f3cc97529907" class="">
+</p></div><div id="acb1ab85-0c03-4356-a07b-ff882ec17498" style="width:100%" class="column"><p id="0eadaf71-b8eb-408a-9926-4d556c37416d" class="">South China Normal University - Telecommunication Engineering - Bachelor’s degree</p><p id="3133ea0a-d94e-420a-a5f3-4ff0f1583af3" class="">Chalmers University - High Performance Computation - Master&#x27;s degree</p><p id="e9745bff-be8e-4d4d-9b7a-31a75b59a091" class="">
+</p></div></div><h2 id="34d62b3d-45b2-4443-a3ec-94a6f9a34f71" class="">Skills</h2><div id="bf551962-9eb9-4bae-ab83-2f4311b9fc9a" class="column-list"><div id="3cae1ce5-a64b-4f44-a281-c66df66cc67d" style="width:100%" class="column"><ul id="c4d44f3d-f246-482c-a47d-15018131b075" class="bulleted-list"><li style="list-style-type:disc">C/C++</li></ul><ul id="c7753780-badf-49b4-97e9-c17c287e0049" class="bulleted-list"><li style="list-style-type:disc">Python</li></ul><ul id="91d31fcb-aa87-4e56-9b75-3675f38ff18a" class="bulleted-list"><li style="list-style-type:disc">Shell scripts</li></ul><ul id="90fa1fb2-0a1a-475b-b54d-33b57ebdd05b" class="bulleted-list"><li style="list-style-type:disc">Markdown</li></ul><ul id="7861c534-1de5-4bae-af28-6f2e278e3bcc" class="bulleted-list"><li style="list-style-type:disc">Java/C#/JavaScript/Html</li></ul></div><div id="51ae4023-6902-4ea9-ab4e-2935de484876" style="width:100%" class="column"><ul id="cb4ef7f3-7302-430a-b59a-ab36f5838012" class="bulleted-list"><li style="list-style-type:disc">Linux</li></ul><ul id="f9a81886-068e-47f7-983d-520d55a03969" class="bulleted-list"><li style="list-style-type:disc">ROS2</li></ul><ul id="76b59ae4-d529-4927-afec-5c42d98b51bd" class="bulleted-list"><li style="list-style-type:disc">Pytorch/TensorFlow</li></ul><ul id="e52f0463-7e8d-4908-90ee-0876607784e7" class="bulleted-list"><li style="list-style-type:disc">NCNN/TensorRT/NNI</li></ul><ul id="bcb8f6a2-c634-41f1-b6bc-c057b951c6e7" class="bulleted-list"><li style="list-style-type:disc">Sensor</li></ul></div><div id="f2abc857-2590-460e-8710-d4203234a764" style="width:100%" class="column"><ul id="a8d2f340-a043-410c-a2bd-413e647ff28f" class="bulleted-list"><li style="list-style-type:disc">Git</li></ul><ul id="0cbd6bdd-dc1d-4dc7-91ea-5d41c7d5693f" class="bulleted-list"><li style="list-style-type:disc">Bazel</li></ul><ul id="6bc4249f-053d-49ae-9c82-003827f6bfca" class="bulleted-list"><li style="list-style-type:disc">JFrog</li></ul><ul id="1e9a4ba8-f771-4157-8bb8-a63ae9fafa2d" class="bulleted-list"><li style="list-style-type:disc">Superset/Jupiter</li></ul><ul id="5fa8a1f3-0104-4d1f-8766-d9fb62a2c887" class="bulleted-list"><li style="list-style-type:disc">Jira/Confluence</li></ul></div></div><h2 id="3f5cdc0a-abc9-4733-9665-9f9d333a82c7" class="">Experience</h2><div id="048c35df-574d-4d76-94cf-15436e0d6658" class="column-list"><div id="1133866d-6edb-4593-90b3-c70b09fd5f7b" style="width:12.5%" class="column"><p id="827a7951-a286-4fb2-ba64-36ae939291c6" class="">04/2021 -<mark class="highlight-gray"> 2023/08</mark></p></div><div id="8a045388-4194-4bc2-af4a-2f3a369ce9b3" style="width:87.5%" class="column"><p id="52566466-70cc-45a9-bf02-eed879722a65" class=""><strong>Software development engineer @ Inceptio tech, Shanghai</strong></p><p id="499d9b70-3886-4f84-85bb-12deb1f1254a" class="">Main developer of the Autonomous Driving System Basic Group, responsible for various aspects of work, including support for vehicle issues and the design and development of several core modules of the Inceptio autonomous driving system. Involved in most stages of the research and development of Inceptio&#x27;s first autonomous driving mass-produced models B, C, D, and S vehicles, as well as daily support for data collection vehicles. Experienced in various DDS systems including Fass-DDS, RTI, and Cyclone, and multiple sensor vendors including Boshi radar, Zvision, Robosense, Innovision, Velodyne, Aceinna, and Beiyun-pbox. Familiar with chip platforms such as Amba, J3, J5, NXP2160, and Intel Xeon.</p><ul id="2a630c69-080b-48e1-87d8-2514caa5e496" class="bulleted-list"><li style="list-style-type:disc">Developed several automation testing scripts for the autonomous driving platform&#x27;s daily use (such as quick error diagnosis scripts) and mass production automation testing systems.</li></ul><ul id="24c06044-eea7-4d08-b8cc-2dbb7d0b56d6" class="bulleted-list"><li style="list-style-type:disc">As the main person in charge of the integration development of the sensor module, involved in Lidar, radar, and camera. Responsible for designing and developing all sensor modules, abstracting and unifying the basic framework of the three main types of sensor drivers, allowing for the rapid integration of new sensor models, and increasing the development efficiency and maintainability during the selection stage. Designed a universal sensor diagnostic and metric, and worked with the big data platform to implement a real-time monitoring and query dashboard system for sensor data quality and operational status across multiple vehicles and different software and hardware versions, effectively promoting the resolution and tracking of difficult issues.</li></ul><ul id="995912d6-1904-4aac-a3bd-ac2b0d38c167" class="bulleted-list"><li style="list-style-type:disc">Main developer of the autonomous driving software stack scheduling program (IPM: Inceptio Process Manager). Involved in the coordination and start-up of multiple SOC modules, cold start environment configuration, multi-mode switching (such as dev/prod/factory), and the monitoring of the process status of various algorithms and basic modules.</li></ul><ul id="0e007c14-10af-4db0-a7a0-63619fc26bc5" class="bulleted-list"><li style="list-style-type:disc">Involved in the development of the time synchronization (Time Sync) function of the system, familiar with the time synchronization framework between multiple SOC and modules.</li></ul><ul id="2fde28c7-f575-42a0-a95b-d697a151c3c9" class="bulleted-list"><li style="list-style-type:disc">Main developer of data post-processing tools, developing and integrating platform tools for data quality statistics, multi-SOC data time alignment, data decompression, and other requirements.</li></ul><ul id="173ced20-c380-4e91-8685-c88ad7fe8761" class="bulleted-list"><li style="list-style-type:disc">Involved in the design of the whole vehicle OTA function, decoupling the upgrade of the sensor and the dependence on the basic system, achieving parallelism, and greatly improving the update speed.</li></ul><ul id="fe6ea437-2735-4f11-b7fe-ba4e6dfd23b3" class="bulleted-list"><li style="list-style-type:disc">Providing basic software system-related functions and development support within the AD group, including support for various features and interfaces within and between groups, as well as troubleshooting for various complex issues.</li></ul></div></div><div id="ff985c00-d1c3-4af1-900e-ff9e8f768981" class="column-list"><div id="feee9bb4-9d8f-40f4-9e68-e9a5d80d1661" style="width:12.5%" class="column"><p id="096ef600-0b3f-49ba-a618-d54a42fabeb1" class="">12/2019 - </p><p id="2404ac7f-a18a-4d1a-aed8-1b466fdf4689" class="">04/2021</p><p id="d75edac8-8316-4a5e-ac47-266a0c14eed6" class="">
+</p></div><div id="1c295800-69f8-4338-917d-8a2b320b48b9" style="width:87.5%" class="column"><p id="98bf3d4a-70e3-4442-a31f-34cded8b424f" class=""><strong>Researcher @ SenseTime, Shanghai</strong></p><p id="f794a4ec-e23d-44c3-8a52-01983bfb321e" class="">Primarily developed for the SenseRoverPro intelligent autonomous driving demonstration system at SenseTime, which is based on NVIDIA TX2 and integrates several basic modules for autonomous driving, including LiDAR, camera, IMU, and ultrasonic sensors. Developed a universal algorithm testing and learning framework based on ROS1, allowing users to quickly adapt and experiment with different algorithms on the platform.</p><ul id="4897df73-b6e3-4dfa-98a8-7ae30692dc12" class="bulleted-list"><li style="list-style-type:disc">Involved in the development of several sensor driver and algorithm module abstraction layers.</li></ul><ul id="662bee16-5b24-4a06-8082-1028394a7b32" class="bulleted-list"><li style="list-style-type:disc">Trained and optimized basic supporting algorithms such as lane line and traffic sign recognition models.</li></ul><ul id="983ad5cc-f364-4016-ba9f-12890628f2eb" class="bulleted-list"><li style="list-style-type:disc">Mainly responsible for the project&#x27;s mass production: outputting engineering code, testing cases, and connecting with the factory for production inspection and after-sales technical services.</li></ul><p id="d76dc052-bf50-48fc-8a99-62e1691ec290" class="">Developed the SenseTime open-source hardware platform.</p><ul id="0153fbb3-9915-4f1c-8cd0-13067c8dc7c6" class="bulleted-list"><li style="list-style-type:disc">Responsible for migrating Openmmlab, SenseTime&#x27;s open-source SDK, and its commonly used models to multiple hardware platforms (Nvidia-TX2, Nvidia-NANO, Intel Movidius, Raspberry).</li></ul><ul id="f8568f89-57df-4b34-b13e-b24068aa3b2c" class="bulleted-list"><li style="list-style-type:disc">Wrote a large number of use cases and demo code.</li></ul></div></div><div id="0e16c0fa-ce26-4946-b8f0-31b2e7db6a19" class="column-list"><div id="7ee1ffc2-c73f-44cd-a92e-f23c8a591ba3" style="width:12.5%" class="column"><p id="d8503d6a-26f4-4e33-a16c-155e38b289cb" class="">07/2019 - </p><p id="8a574b2f-a87c-468a-9092-194c05a34e12" class="">12/2019 </p><p id="2831ba53-fbbd-4dfd-87d5-bee41d767a6f" class="">
+</p></div><div id="c82881b6-4eb6-4bdd-89e0-f31f461e53e3" style="width:87.5%" class="column"><p id="0e96bc80-14e8-416c-9998-393758106cb7" class=""><strong>Visual Algorithm Engineer @ Jimi IoT, Huizhou</strong></p><p id="24c20dcd-e7b1-4253-a5ee-1c4797dc45f6" class="">Developed a driving assistance system (DMS) based on MTCNN, consisting of multiple small parallel networks, benchmarked against the Horizon 1st generation product (approx. 85% accuracy), capable of detecting five dangerous driving behaviors: smoking, phone use, drowsiness, distraction, and lack of seat belt.</p><ul id="33841ac7-ee03-4226-8aec-ad88ad42ba6f" class="bulleted-list"><li style="list-style-type:disc">Collected and labeled multi-scenario datasets (daytime, nighttime, backlight, etc.).</li></ul><ul id="1cb82d0c-04aa-4f6f-9d81-7b4dcf414438" class="bulleted-list"><li style="list-style-type:disc">Implemented a universal training and testing framework code, pre-selected mainstream networks during the same period, and compared the effects of multiple networks.</li></ul><ul id="c4c5b94f-f2a3-4e86-9e61-f619e018681f" class="bulleted-list"><li style="list-style-type:disc">Modified and optimized the network structure to suit the specific application, and quantized the model for acceleration.</li></ul></div></div><div id="1f2b569f-9dd3-4062-8723-8f6aa9732142" class="column-list"><div id="f31b7ff1-0507-4460-b7de-5fc951dee7e1" style="width:12.5%" class="column"><p id="c7dc3ec5-9528-438a-bffb-bcbe60b0c683" class="">10/2018 - </p><p id="ea9cef05-9d48-4023-9a56-13d4762ec39d" class="">05/2019</p><p id="154d8637-7fbe-47a4-a7eb-d137edd56cdb" class="">
+</p></div><div id="fe33fa18-e224-47fe-8db9-dc71010e85fe" style="width:87.5%" class="column"><p id="149d8db7-e4d2-4e8f-ae61-c82ad081b685" class=""><strong>Researcher-Intern @ SenseTime, Shenzhen</strong></p><p id="ebbc09b3-5eef-4b7e-ba4c-76bcbc5dba55" class="">Implemented an imitation learning-based autonomous driving demo system using the Nvidia &quot;End to End Deep Learning for self-driving cars&quot;.</p><ul id="d0148082-c975-4ce1-91f4-9f246d677b55" class="bulleted-list"><li style="list-style-type:disc">Built a prototype of the vehicle&#x27;s mechanical and electronic control system.</li></ul><ul id="de53d522-2473-4a9f-852a-7d4f6cf52e75" class="bulleted-list"><li style="list-style-type:disc">Reproduced the End2End method mentioned in the paper, adjusted the network structure (from AlexNet to VAECNN/ Segmentation/ Fast Segmentation), and used different loss functions to optimize speed and direction control (capable of basic autonomous decision-making: driving on roads with lane markings, responding correctly based on traffic signs, and slowing down/stopping for pedestrians).</li></ul><ul id="50888f03-6b2f-4e02-89ec-d609b5564f2d" class="bulleted-list"><li style="list-style-type:disc">Developed a data collection method (shadow collection) → data cleaning (labeling) → automatic training/automatic fine-tuning.</li></ul><ul id="80f59db8-1bb2-41f1-96ba-0abc0beb5d99" class="bulleted-list"><li style="list-style-type:disc">Contributed to product mass production, liaised with production, and provided on-site customer delivery and after-sales problem-solving.</li></ul></div></div><div id="e8b2a3e6-a02d-4ac9-a3dd-f48feabebfb1" class="column-list"><div id="b0b64e14-be74-401e-af44-7395e9785eb3" style="width:12.5%" class="column"><p id="3801538e-ab30-4e2e-b3e1-7c3b6b270be8" class="">07/2018 - </p><p id="a8b3797b-2824-4bbf-89f3-7cea961abc04" class="">08/2018</p></div><div id="7b5a908c-8382-448f-8e80-51aa9861f71f" style="width:87.5%" class="column"><p id="6e89b81d-d2a4-436b-9840-86680c40c2ee" class=""><strong>Visual Algorithm Engineer-Intern @ Jimi IoT, Huizhou</strong></p><ul id="e92da85e-6468-4c63-8ecf-b180d0cbe234" class="bulleted-list"><li style="list-style-type:disc">Implemented traditional visual processing algorithms for pipeline material statistics (quantity/defects)</li></ul><ul id="50e5c758-35ed-4135-93f7-3e045c72faa7" class="bulleted-list"><li style="list-style-type:disc">Developed corresponding front-end and back-end management applications, integrated with the factory&#x27;s SQL database system, supported real-time data updating, yield warning, remote product switching, and automatic data collection and upload to the cloud.</li></ul><p id="3ccce7c3-dc59-400f-ada3-b7f2f456cd54" class="">
+</p></div></div><p id="630967e0-b3a6-47f4-8a63-a2946284bf25" class="">
+</p><p id="622bfb0d-d02c-44b0-a57c-2d1c7edb8f3d" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
