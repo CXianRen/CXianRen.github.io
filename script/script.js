@@ -83,20 +83,20 @@ if (this.activeCardIndex >= this.cardData.length - 1) {
 }
 
 _generateTimeline() {
-let htmlWrap = '<ol></ol>';
-$(this.timelineNodeContainer).append(htmlWrap);
-let wrap = $(this.timelineNodeContainer).find('ol');
-let numNode = this.cardData.length;
-for (let i = 0; i < numNode; i++) {
-  let c = this.cardData[i].color;
-  let el = wrap.append('<li class="' + this.cardData[i].period + '" style="border-color: ' + c + '"></li>');
-}
-let nodeW = 200;
-wrap.css('width', nodeW * numNode - 16);
-let nodeList = $(this.base).find('.timeline ol li');
-this.timelineData = nodeList;
-}
-
+  let htmlWrap = '<ol></ol>';
+  $(this.timelineNodeContainer).append(htmlWrap);
+  let wrap = $(this.timelineNodeContainer).find('ol');
+  let numNode = this.cardData.length;
+  for (let i = 0; i < numNode; i++) {
+    let c = this.cardData[i].color;
+    let el = wrap.append('<li class="' + this.cardData[i].period + '" style="border-color: ' + c + '"></li>');
+  }
+  let nodeW = 200;
+  wrap.css('width', nodeW * numNode - 16);
+  let nodeList = $(this.base).find('.timeline ol li');
+  this.timelineData = nodeList;
+  }
+  
 _assignBtn() {
 let periodPrev = $(this.base).find('.periods-container .btn-back');
 let periodNext = $(this.base).find('.periods-container .btn-next');
@@ -233,12 +233,3 @@ _chainActions(state) {
 }
 }
 
-// Document load
-$(document).ready(function () {
-let colorcode = {
-  'period1': '#fec541',
-  'period2': '#36d484',
-  'period3': '#32ccf4'
-};
-let timeline = new PRESTimeline($('#this-timeline'), colorcode);
-});

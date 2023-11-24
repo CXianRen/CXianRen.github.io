@@ -1,266 +1,305 @@
-<header>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/blog.css">
-</header>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="script/script.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+  <script>
+    // Document load
+    $(document).ready(function () {
+      let colorcode = {
+        'period1': '#333333',
+        'period2': '#CCCCCC',
+        'period3': '#333333',
+        'period4': '#CCCCCC',
+        'period5': '#333333',
+        'period6': '#CCCCCC',
+      };
+      let timeline = new PRESTimeline($('#this-timeline'), colorcode);
+
+
+
+      $('.popup-gallery').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        tLoading: 'Loading image #%curr%...',
+        mainClass: 'mfp-img-mobile',
+        gallery: {
+          enabled: true,
+          navigateByImgClick: true,
+          preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+        },
+        image: {
+          tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+          titleSrc: function (item) {
+            return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
+          }
+        }
+      });
+
+      timeline.activeCardIndex = timeline.cardData.length - 1;
+      timeline.activeCard = timeline.cardData[timeline.activeCardIndex];
+      timeline.activePeriod = timeline.periodData[timeline.periodData.length - 1];
+
+      console.log('Initial activeCardIndex:', timeline.activeCardIndex);
+      console.log('Initial activeCard:', timeline.activeCard);
+      console.log('Initial activePeriod:', timeline.activePeriod);
+
+      // 更新状态和界面
+      timeline._chainActions('timeline');
+      timeline._setStateClasses();
+      timeline._adjustCardContainer();
+      timeline._shiftTimeline();
+    });
+
+  </script>
+</head>
+
+</head>
 
 <body>
-    <div style="display: flex; flex-direction: column; align-items: center;">
-        <div style="display: flex; flex-direction: row; justify-content: center; margin-bottom: 0px;">
-            <h1>Hongguang Chen </h1>
-            <h1 style="margin-left: 20px; margin-right: 20px; color: gray;"> | </h1>
-            <h1>Hal</h1>
-        </div>
-        <div style="margin-top: -20px;">
-            <p class="contact-info" style="font-size: 15px">Email: chenhon@chalmers.se | chenhongguang@m.scnu.edu.cn
-            </p>
-        </div>
-        <div style="margin-top: -20px;">
-            <p style="font-size: 15px"> Tel: (China) +86-15625153858 (Sweden) +46-764510776</p>
-        </div>
-        <div style="margin-top: -20px;">
-            <p style="font-size: 15px"> 
-                <a href="/cv.html" target="_blank" style="margin-right: 50px;"> CV</a>
-                <a href="/cv_zh.html" target="_blank" style="margin-right: 50px;"> CV(中文)</a>
-                <a href="https://www.linkedin.com/in/%E9%B8%BF%E5%85%89-%E9%99%88-22b93a14a/" target="_blank">
-                    Linkedin
-                </a>
-            </p> 
-        </div>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <div style="display: flex; flex-direction: row; justify-content: center; margin-bottom: 0px;">
+      <h1>Hongguang Chen </h1>
+      <h1 style="margin-left: 20px; margin-right: 20px; color: gray;"> | </h1>
+      <h1>Hal</h1>
     </div>
-    <ul class="timeline">
-        <!-- senior years -->
-        <!-- Item 1 -->
-        <!-- Sensen time -->
-        <li>
-            <div class="direction-l">
-                <div class="flag-wrapper">
-                    <span class="hexa"></span>
-                    <span class="flag">SenseTime MIG - Shenzhen</span>
-                    <span class="time-wrapper"><span class="time">Oct 2018</span></span>
-                </div>
-                <div class="desc">
-                    <p>Intern researcher.</p>
-                    <p>The first step in my career.</p>
-                    <p><a href="https://www.sensetime.com/en/about-index#1" target="_blank"> about Sensetime</a></p>
-                    <img src="img/other/first_day.jpg" , style="max-height: 200;">
-                </div>
-        </li>
-        <li>
-            <div class="direction-r">
-                <div class="flag-wrapper">
-                    <span class="hexa"></span>
-                    <span class="flag">Rover and Ranger prototype</span>
-                    <span class="time-wrapper"><span class="time">Dec 2018</span></span>
-                </div>
-                <div class="desc" ,>
-                    <p>Rover X prototype</p>
-                    <p style="font-size: small;">A straightforward 4-wheel platform that is compact yet highly
-                        functional,
-                        built on End-to-End learning. Our aim is to offer students a real-world environment
-                        in which they can apply their algorithms and policies.</p>
-                    <img src="img/roverX_prototype/rover_x_prototype.jpg" , style="max-height: 100;">
-                    <p>Ranger prototype</p>
-                    <p style="font-size: small;">Camera, lidar, ultrasonic, IMU, Raspberry pi</p>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="direction-r">
-                <div class="flag-wrapper">
-                    <span class="hexa"></span>
-                    <span class="flag">Mass production</span>
-                    <span class="time-wrapper"><span class="time">Feb 2019</span></span>
-                </div>
-                <div class="desc" ,>
-                    <p style="font-size: small;">we have made made a lot of efforts.</p>
-                    <p>Rover X</p>
-                    <img src="img/roverX/RoverX.jpg" , style="max-height: 200;">
-                    <p>Ranger</p>
-                    <img src="img/ranger/ranger.jpg" , style="max-height: 200;">
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="direction-r">
-                <div class="flag-wrapper">
-                    <span class="hexa"></span>
-                    <span class="flag">An Bigger Toy</span>
-                    <span class="time-wrapper"><span class="time">Feb-Mar 2019</span></span>
-                </div>
-                <div class="desc" ,>
-                    <p> an bigger toy to present paper:
-                        <a
-                            href="https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf" target="_blank">End
-                            to End Learning for Self-Driving Cars
-                        </a>. it did work very well. A karting-size electromobile + nvidia TX2 + Logitech camera </p>
-                    <img src="img/honghong/honghong.jpg" , style="max-height: 100;">
-                </div>
-            </div>
-        </li>
-        <!-- graduation and JiMi -->
-        <li>
-            <div class="direction-l">
-                <div class="flag-wrapper">
-                    <span class="hexa"></span>
-                    <span class="flag">Graduated from SCNU</span>
-                    <span class="time-wrapper"><span class="time">May-July 2019</span></span>
-                    <div class="desc">
-                        
-                            In May, I completed my first internship and returned to university. Then, in July,
-                            I obtained my bachelor's degree in communications engineering from South China Normal
-                            University. I made the decision to kick off my second internship at a Factory 4.0 company (JIMI), 
-                            where the focus is on smart pipelines and automated storage systems.
-                        
-                    <a href="http://english.scnu.edu.cn/" target="_blank"> about SCNU</a>
-                    <a href="https://www.jimilab.com/" target="_blank"> about JIMI</a>
-                    </div>
-                </div>
-            </div>
-        </li>
+    <div style="margin-top: -20px;">
+      <p class="contact-info" style="font-size: 15px">Email: chenhon@chalmers.se | chenhongguang@m.scnu.edu.cn
+      </p>
+    </div>
+    <div style="margin-top: -20px;">
+      <p style="font-size: 15px"> Tel: (China) +86-15625153858 (Sweden) +46-764510776</p>
+    </div>
+    <div style="margin-top: -20px;">
+      <p style="font-size: 15px">
+        <a href="/cv.html" target="_blank" style="margin-right: 50px;"> CV(English)</a>
+        <a href="/cv_zh.html" target="_blank" style="margin-right: 50px;"> CV(Chinese)</a>
+        <a href="https://www.linkedin.com/in/%E9%B8%BF%E5%85%89-%E9%99%88-22b93a14a/" target="_blank">
+          Linkedin
+        </a>
+      </p>
+    </div>
+  </div>
 
-        <li>
-            <div class="direction-r">
-                <div class="flag-wrapper">
-                    <span class="hexa"></span>
-                    <span class="flag">Image algorithm Engineer</span>
-                    <span class="time-wrapper"><span class="time">Jul-Dec 2019</span>
-                </div>
-                <div class="desc">Completed a machine vision recognition project designed for picking up electronic components
-                    <img src="img/smart_vga/smart_vga.jpg" , style="max-height: 250;">
-                </div>
-            </div>
-        </li>
-        <!-- Sensetime Shanghi -->
-        <li>
-            <div class="direction-l">
-                <div class="flag-wrapper">
-                    <span class="hexa"></span>
-                    <span class="flag">SenseTime EIG - Shanghai</span>
-                    <span class="time-wrapper"><span class="time">Dec 2019</span></span>
-                </div>
-                <div class="desc">
-                    <p>At the invitation of my former leader, I have officially joined SenseTime.</p>
-                    <a href="https://www.sensetime.com/en/product-education-01?categoryId=1169" target="_blank"> 
-                        about MINI, Rover and Storm</a>
-                </div>
-            </div>
-        </li>
-        <!-- MINI -->
-        <li>
-            <div class="direction-r">
-                <div class="flag-wrapper">
-                    <span class="hexa"></span>
-                    <span class="flag">Rover Mini</span>
-                    <span class="time-wrapper"><span class="time">Dec/2019 - Feb/2020</span></span>
-                </div>
-                <div class="desc">
-                    <p>a programable toy car, used for teaching kids python.</p>
-                    <img src="img/mini/mini_1.jpg" , style="max-height: 150;">
-                    <img src="img/mini/mini_3.jpg" , style="max-height: 150;">
-                </div>
-            </div>
-        </li>
-        <!-- Rover -->
-        <li>
-            <div class="direction-r">
-                <div class="flag-wrapper">
-                    <span class="hexa"></span>
-                    <span class="flag">Rover Pro</span>
-                    <span class="time-wrapper"><span class="time">Dec/2019-Jun/2020</span></span>
-                </div>
-                <div class="desc">
-                    <p>The upgraded version of the Rover project, in which I participated during my internship, 
-                        serves as an educational platform. It is designed for high school students and university 
-                        freshmen to gain fundamental knowledge about self-driving technology. 
-                        This includes topics such as object detection, line tracking, 
-                        as well as SLAM algorithms utilizing LiDAR technology.
-                    </p>
-                    <img src="img/pro/pro_1.jpg" , style="max-height: 150;">
-                    <img src="img/pro/pro_2.jpg" , style="max-height: 150;">
-                    <img src="img/pro/pro_3.jpg" , style="max-height: 150;">
-                    <img src="img/pro/pro_4.png" , style="max-height: 150;">
-                    <a href="https://zhuanlan.zhihu.com/p/66377386" target="_blank">prototype video</a>
-                    <!-- 六轮车->3d打印车->黑色车->完整车->地图,视角 -->
-                </div>
-            </div>
-        </li>
+  <div class="body-wrap">
+    <!-- # component starts -->
+    <div class="pres-timeline" id="this-timeline">
+      <!-- ###   -->
+      <!--   <div class="periods-section"> -->
+      <div class="periods-container">
 
-        <li>
-            <div class="direction-r">
-                <div class="flag-wrapper">
-                    <span class="hexa"></span>
-                    <span class="flag">Strom</span>
-                    <span class="time-wrapper"><span class="time">Dec/2019-Mar/2020</span></span>
-                </div>
-                <div class="desc">
-                    <p>A control box with Raspberry pi inside, similar to LEGO EV3, supporting LEGO sensors, but with more powerful CPU, supporting  
-                        also camera sensors and various inside AI model, allows kid using LEGO blocks to create things with AI.
-                    </p>
-                    <img src="img/storm/storm_1.jpg" , style="max-height: 150;">
-                    <img src="img/storm/storm_2.jpg" , style="max-height: 150;">
-                    <img src="img/storm/storm_3.jpg" , style="max-height: 150;">
-                </div>
-            </div>
-        </li>
+        <section class="period-single" period="period1">
+          <h4 class="year">2018</h4>
+          <h2 class="title">SenseTime MIG - Shenzhen</h2>
+          <p><a href="https://www.sensetime.com/en/about-index#1" target="_blank"> About Sensetime</a></p>
+        </section>
 
-        <li>
-            <div class="direction-r">
-                <div class="flag-wrapper">
-                    <span class="hexa"></span>
-                    <span class="flag">Innokit</span>
-                    <span class="time-wrapper"><span class="time">Jul/2020-April/2021</span></span>
-                </div>
-                <div class="desc">
-                    <p> A box containing an NVIDIA NANO system and multiple ports for adaptable sensors serves 
-                        as a training platform for college students. 
-                        It enables them to test and develop their AIOT (Artificial Intelligence of Things) applications." 
-                    </p>
-                    <img src="img/kit/kit_1.jpg" , style="max-height: 150;">
-                    <img src="img/kit/kit_2.jpg" , style="max-height: 150;">
-                </div>
-            </div>
-        </li>
+        <section class="period-single" period="period2">
+          <h4 class="year">2019/07 - 2019/12</h4>
+          <h2 class="title">SCNU and JIMI technology</h2>
+          <a href="http://english.scnu.edu.cn/" target="_blank"> About SCNU</a>
+          <a href="https://www.jimilab.com/" target="_blank"> About JIMI</a>
+        </section>
 
-        <li>
-            <div class="direction-l">
-                <div class="flag-wrapper">
-                    <span class="hexa"></span>
-                    <span class="flag">Inceptio</span>
-                    <span class="time-wrapper"><span class="time">April/2021</span></span>
-                </div>
-                <div class="desc">
-                    <p>
-                        During my nearly two-year tenure at SenseTime, I acquired valuable knowledge, made friends, 
-                        and gained experience in building innovative solutions from scratch. 
-                        However, the time had come for me to pursue my dreams, and I subsequently joined Inceptio,
-                        an exciting startup that aims to revolutionize the logistics industry with self-driving technology.
-                        In my role as a software engineer, I am responsible for developing our self-driving software stack.
-                    </p>
-                        <a href="https://en.inceptio.ai/product" target="_blank"> 
-                        about Inceptio </a>
-                </div>
+        <section class="period-single" period="period3">
+          <h4 class="year">2019/12-2021/04</h4>
+          <h2 class="title">SenseTime EIG - Shanghai</h2>
+          <p><a href="https://www.sensetime.com/en/about-index#1" target="_blank"> About Sensetime</a></p>
+        </section>
+
+        <section class="period-single" period="period4">
+          <h4 class="year">2021/04-2023/08</h4>
+          <h2 class="title">Inceptio - Shanghai</h2>
+          </p><a href="https://en.inceptio.ai/product" target="_blank"> About Inceptio </a>
+        </section>
+
+        <section class="period-single" period="period5">
+          <h4 class="year">2023/08 - now</h4>
+          <h2 class="title">Chalmers - Gothenburg</h2>
+        </section>
+
+        <div class="btn-back"></div>
+        <div class="btn-next"></div>
+      </div>
+      <!--   </div> -->
+      <!-- ### -->
+      <!--   <div class="timeline-section"> -->
+      <div class="timeline-container">
+        <!--     # timeline graphic place holder - fill with js -->
+        <div class="timeline"></div>
+
+        <div class="btn-back"><svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+            <path fill="none" d="M0 0h30v30H0z" />
+            <path fill="#D8D8D8" fill-rule="evenodd"
+              d="M11.828 15l7.89-7.89-2.83-2.828L6.283 14.89l.11.11-.11.11L16.89 25.72l2.828-2.83" />
+          </svg></div>
+        <div class="btn-next"><svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+            <path fill="none" d="M0 0h30v30H0z" />
+            <path fill="#D8D8D8" fill-rule="evenodd"
+              d="M18.172 14.718l-7.89-7.89L13.112 4l10.606 10.607-.11.11.11.11-10.608 10.61-2.828-2.83 7.89-7.89" />
+          </svg></div>
+      </div>
+      <!--   </div> -->
+      <!-- ### -->
+      <!--   <div class="cards-section"> -->
+      <div class="cards-container">
+        <section class="card-single" period="period1">
+          <h4 class="year">2018/10</h4>
+          <h2 class="title">Intern researcher</h2>
+          <div class="content">
+            <p>The first step in my career.</p>
+            <div class="popup-gallery">
+              <a href="img/other/first_day.jpg"><img src="img/other/first_day.jpg" style="width: 100px;"></a>
             </div>
-        </li>
-        <li>
-            <div class="direction-r">
-                <div class="flag-wrapper">
-                    <span class="hexa"></span>
-                    <span class="flag">Self-Driving Truck</span>
-                    <span class="time-wrapper"><span class="time">April/2021-July/2023</span></span>
-                </div>
-                <div class="desc">
-                    <p> The small toy transformed into a substantial endeavor!!! 
-                        I spent over two years at Inceptio, 
-                        actively participating in nearly every crucial aspect of building a self-driving car.
-                    </p>
-                    <img src="img/inceptio/inceptio_1.jpg" , style="max-height: 220;">
-                    <img src="img/inceptio/inceptio_2.jpg" , style="max-height: 150;">
-                    <img src="img/inceptio/inceptio_3.jpg" , style="max-height: 150;">
-                    <img src="img/inceptio/inceptio_6.jpg" , style="max-height: 150;">
-                    <img src="img/inceptio/inceptio_5.jpg" , style="max-height: 150;">
-                    <img src="img/inceptio/inceptio_4.jpg" , style="max-height: 150;">
-                </div>
+            <h4 class="year">2018/12</h4>
+            <h2 class="title">Rover and Ranger prototype</h2>
+            <div class="content">
+              <p>Rover X prototype</p>
+              <p style="font-size: small;">A straightforward 4-wheel platform that is compact yet highly
+                functional,
+                built on End-to-End learning. Our aim is to offer students a real-world environment
+                in which they can apply their algorithms and policies.</p>
+              <div class="popup-gallery">
+                <a href="img/roverX_prototype/rover_x_prototype.jpg"><img
+                    src="img/roverX_prototype/rover_x_prototype.jpg" style="width: 90%;"></a>
+              </div>
+              <p style="font-size: small;">Camera, lidar, ultrasonic, IMU, Raspberry pi</p>
             </div>
-        </li>
-    </ul>
+            <h4 class="year">2019/02</h4>
+            <h2 class="title">Mass production</h2>
+            <div class="content">
+              <p style="font-size: small;">we have made made a lot of efforts.</p>
+              <p>Rover X</p>
+              <div class="popup-gallery">
+                <a href="img/roverX/RoverX.jpg"><img src="img/roverX/RoverX.jpg" style="width: 90%;"></a>
+              </div>
+              <p>Ranger</p>
+              <div class="popup-gallery">
+                <a href="img/ranger/ranger.jpg"><img src="img/ranger/ranger.jpg" style="width: 90%;"></a>
+              </div>
+            </div>
+            <h2 class="title">A Bigger Toy</h2>
+            <div class="content">
+              <p> a bigger toy to present paper:
+                <a href="https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf"
+                  target="_blank">End
+                  to End Learning for Self-Driving Cars
+                </a>. it did work very well. A karting-size electromobile + nvidia TX2 + Logitech camera
+              </p>
+              <div class="popup-gallery">
+                <a href="img/honghong/honghong.jpg"><img src="img/honghong/honghong.jpg" style="width: 90%;"></a>
+              </div>
+        </section>
+
+        <section class="card-single" period="period2">
+          <h2 class="title">Graduated from SCNU.</h2>
+          <div class="content">
+            <p> In May, I completed my first internship and returned to university. Then, in July,
+              I obtained my bachelor's degree in communications engineering from South China Normal
+              University. I made the decision to kick off my second internship at a Factory 4.0 company (JIMI),
+              where the focus is on smart pipelines and automated storage systems.
+            </p>
+          </div>
+          <h2 class="title">Image algorithm Engineer - Intern.</h2>
+          <div class="content">
+            <p> Completed a machine vision recognition project designed for picking up electronic components.
+            </p>
+            <div class="popup-gallery">
+              <a href="img/smart_vga/smart_vga.jpg"><img src="img/smart_vga/smart_vga.jpg" style="width: 95%;"></a>
+            </div>
+          </div>
+        </section>
+
+        <section class="card-single" period="period3">
+          <div class="content">
+            <p>At the invitation of my former leader, I have officially joined SenseTime.</p>
+            <a href="https://www.sensetime.com/en/product-education-01?categoryId=1169" target="_blank">
+              about MINI, Rover and Storm</a>
+          </div>
+          <h2 class="title">Rover Mini</h2>
+          <div class="content">
+            <p>a programable toy car, used for teaching kids python.</p>
+            <div class="popup-gallery">
+              <a href="img/mini/mini_1.jpg"><img src="img/mini/mini_1.jpg" style="width: 40%;"></a>
+              <a href="img/mini/mini_3.jpg"><img src="img/mini/mini_3.jpg" style="width: 40%;"></a>
+            </div>
+          </div>
+          <h2 class="title">Rover Pro</h2>
+          <div class="content">
+            <p>The upgraded version of the Rover project, in which I participated during my internship,
+              serves as an educational platform. It is designed for high school students and university
+              freshmen to gain fundamental knowledge about self-driving technology.
+              This includes topics such as object detection, line tracking,
+              as well as SLAM algorithms utilizing LiDAR technology.
+            </p>
+            <div class="popup-gallery">
+              <a href="img/pro/pro_2.jpg"><img src="img/pro/pro_2.jpg" style="width: 30%;"></a>
+              <a href="img/pro/pro_3.jpg"><img src="img/pro/pro_3.jpg" style="width: 30%;"></a>
+              <a href="img/pro/pro_4.png"><img src="img/pro/pro_4.png" style="width: 30%;"></a>
+              <a href="img/pro/pro_1.jpg"><img src="img/pro/pro_1.jpg" style="width: 30%;"></a>
+            </div>
+            <a href="https://zhuanlan.zhihu.com/p/66377386" target="_blank">prototype video</a>
+          </div>
+
+          <h2 class="title">Strom</h2>
+          <div class="content">
+            <p>A control box with Raspberry pi inside, similar to LEGO EV3, supporting LEGO sensors, but with more
+              powerful CPU, supporting
+              also camera sensors and various inside AI model, allows kid using LEGO blocks to create things with AI.
+            </p>
+            <div class="popup-gallery">
+              <a href="img/storm/storm_1.jpg"><img src="img/storm/storm_1.jpg" style="width: 30%;"></a>
+              <a href="img/storm/storm_2.jpg"><img src="img/storm/storm_2.jpg" style="width: 30%;"></a>
+              <a href="img/storm/storm_3.jpg"><img src="img/storm/storm_3.jpg" style="width: 30%;"></a>
+            </div>
+          </div>
+
+          <h2 class="title">Innokit</h2>
+          <div class="content">
+            <p> A box containing an NVIDIA NANO system and multiple ports for adaptable sensors serves
+              as a training platform for college students.
+              It enables them to test and develop their AIOT (Artificial Intelligence of Things) applications."
+            </p>
+            <div class="popup-gallery">
+              <a href="img/kit/kit_1.jpg"><img src="img/kit/kit_1.jpg" style="width: 45%;"></a>
+              <a href="img/kit/kit_2.jpg"><img src="img/kit/kit_2.jpg" style="width: 45%;"></a>
+            </div>
+          </div>
+        </section>
+
+        <section class="card-single" period="period4">
+          <h2 class="title">Self-Driving Truck</h2>
+          <div class="content">
+            <p> The small toy transformed into a substantial endeavor!!!
+              I spent over two years at Inceptio,
+              actively participating in nearly every crucial aspect of building a self-driving car.
+            </p>
+            <div class="popup-gallery">
+              <a href="img/inceptio/inceptio_1.jpg"><img src="img/inceptio/inceptio_1.jpg" style="width: 90%;"></a>
+              <a href="img/inceptio/inceptio_2.jpg"><img src="img/inceptio/inceptio_2.jpg" style="width: 45%;"></a>
+              <a href="img/inceptio/inceptio_3.jpg"><img src="img/inceptio/inceptio_3.jpg" style="width: 45%;"></a>
+              <a href="img/inceptio/inceptio_6.jpg"><img src="img/inceptio/inceptio_6.jpg" style="width: 45%;"></a>
+              <a href="img/inceptio/inceptio_5.jpg"><img src="img/inceptio/inceptio_5.jpg" style="width: 45%;"></a>
+              <a href="img/inceptio/inceptio_4.jpg"><img src="img/inceptio/inceptio_4.jpg" style="width: 90%;"></a>
+            </div>
+          </div>
+        </section>
+
+        <section class="card-single active" period="period5">
+          <div class="content">
+            <img src="https://logos-download.com/wp-content/uploads/2019/11/Chalmers_University_of_Technology_Logo.png"
+              alt="" />
+            <p>Pursuing a master's degree in High-Performance Computation at Chalmers.</p>
+            <p>We have cool things waiting to be created!</p>
+          </div>
+        </section>
+      </div>
+      <!--   </div> -->
+      <!-- ###   -->
+    </div>
+    <!-- # component ends -->
+  </div>
 </body>
