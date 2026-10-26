@@ -3,345 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script>
-    $(document).ready(function(){
-      // 时间线点击展开功能
-      $('.timeline-content').css('cursor','pointer');
-      $('.timeline-content').on('click', function(){
-        var detail = $(this).siblings('.timeline-detail');
-        if(detail.is(':visible')){
-          detail.slideUp(220);
-        }else{
-          $('.timeline-detail').slideUp(220); // 只展开一个
-          detail.slideDown(320);
-        }
-      });
-
-      // 导航栏切换功能
-      $('.nav-item').on('click', function(){
-        var targetSection = $(this).data('section');
-        
-        // 更新导航栏状态
-        $('.nav-item').removeClass('active');
-        $(this).addClass('active');
-        
-        // 隐藏所有区域
-        $('.section-content').removeClass('active');
-        
-        // 显示目标区域
-        $('#' + targetSection + '-section').addClass('active');
-      });
-
-      // 图片轮播功能
-      $(document).on('click', '.nav-dot', function(){
-        console.log('Nav dot clicked!'); // 调试信息
-        var imgIndex = $(this).data('img');
-        var gallery = $(this).closest('.project-img-gallery');
-        
-        console.log('Image index:', imgIndex); // 调试信息
-        
-        // 更新图片显示
-        gallery.find('.project-img').removeClass('active');
-        gallery.find('.project-img').eq(imgIndex).addClass('active');
-        
-        // 更新导航点状态
-        gallery.find('.nav-dot').removeClass('active');
-        $(this).addClass('active');
-      });
-    });
-  </script>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="description" content="Hongguang Chen — a timeline of research, education, and engineering experience in high-performance computing, AI, and robotics.">
+  <meta name="theme-color" content="#192127">
+  <title>Timeline — Hongguang Chen</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="wordmark" href="index.html" aria-label="Hongguang Chen, timeline"><span class="monogram" aria-hidden="true">hc.</span><span>Hongguang Chen</span></a>
+    <nav aria-label="Main navigation"><a href="index.html" aria-current="page">Timeline</a><a href="projects.html">Projects</a><a href="research.html">Research</a><a href="about.html">About</a></nav>
+  </div></header>
+  <main id="main" class="page-shell">
+    <div class="timeline-layout">
+      <aside class="profile-summary" aria-label="About Hongguang Chen">
+        <img class="profile-photo" src="img/github-avatar.png" alt="Hongguang Chen’s GitHub avatar" width="272" height="272" fetchpriority="high">
+        <div class="profile-name"><p class="eyebrow">Researcher &amp; engineer</p><p class="profile-title">Hongguang<br> Chen<span class="accent">.</span></p></div>
+        <p class="profile-description">PhD student at Chalmers University of Technology. Working across high-performance computing, AI, and robotics.</p>
+        <p class="profile-location">Gothenburg, Sweden</p>
+        <div class="profile-links"><a href="about.html">About &amp; contact <span aria-hidden="true">↗</span></a><a href="cv_eng.pdf" target="_blank" rel="noopener noreferrer">CV <span aria-hidden="true">↗</span></a></div>
+      </aside>
+      <section class="timeline-section" aria-labelledby="timeline-title">
+        <header class="timeline-heading"><p class="eyebrow">2018 — present</p><h1 id="timeline-title">Timeline<span class="accent">.</span></h1><p>My path through research, engineering, and the places along the way.</p></header>
+        <ol class="timeline">
+        <li class="timeline-entry timeline-entry-current">
+          <span class="timeline-year" aria-hidden="true">2025</span>
+          <article class="timeline-card">
+            <div class="timeline-meta"><time datetime="2025-09">Sep 2025 — present</time><span class="current-label">Current</span></div>
+            <h2><a class="organization-link" href="https://www.chalmers.se/en/" target="_blank" rel="noopener noreferrer">Chalmers University of Technology <span aria-hidden="true">↗</span></a></h2><p class="timeline-role">PhD in Computer Science and Engineering</p>
+            <p class="timeline-description">High-performance computing and RISC-V.</p>
 
-<body>
-  <div class="profile-header">
-    <div class="profile-card">
-      <img src="img/me.jpg" alt="me" class="profile-avatar">
-      <div class="profile-info">
-        <h1>Hongguang Chen</h1>
-        <p class="profile-contact"><i class="fas fa-envelope"></i> chenhon@chalmers.se</p>
-        <p class="profile-contact"><i class="fas fa-phone"></i> +46-764510776</p>
-        <div class="profile-links">
-          <a href="/cv_eng.pdf" target="_blank"><i class="fas fa-file-pdf"></i> CV</a>
-          <a href="https://github.com/CXianRen" target="_blank"><i class="fab fa-github"></i> Github</a>
-          <a href="https://www.linkedin.com/in/chen-hongguang-22b93a14a/?original_referer=" target="_blank"><i class="fab fa-linkedin"></i> Linkedin</a>
-          <a href="blog.html"><i class="fas fa-feather-alt"></i> Blog</a>
-        </div>
-      </div>
+            <div class="timeline-bottom"><span class="timeline-place">Gothenburg, Sweden</span><a class="text-link" href="research.html">Explore my research <span aria-hidden="true">↗</span></a></div>
+          </article>
+        </li>
+        <li class="timeline-entry">
+          <span class="timeline-year" aria-hidden="true">2024</span>
+          <article class="timeline-card">
+            <div class="timeline-meta"><time datetime="2024-10">Oct 2024 — Feb 2025</time></div>
+            <h2><a class="organization-link" href="https://www.u-tokyo.ac.jp/en/" target="_blank" rel="noopener noreferrer">University of Tokyo <span aria-hidden="true">↗</span></a></h2><p class="timeline-role">Exchange student</p>
+            <p class="timeline-description">An exchange program in Tokyo.</p>
+
+            <div class="timeline-bottom"><span class="timeline-place">Tokyo, Japan</span></div>
+          </article>
+        </li>
+        <li class="timeline-entry">
+          <span class="timeline-year" aria-hidden="true">2023</span>
+          <article class="timeline-card">
+            <div class="timeline-meta"><time datetime="2023-08">Started Aug 2023</time></div>
+            <h2><a class="organization-link" href="https://www.chalmers.se/en/" target="_blank" rel="noopener noreferrer">Chalmers University of Technology <span aria-hidden="true">↗</span></a></h2><p class="timeline-role">Master’s studies in High-Performance Computing</p>
+            <p class="timeline-description">Studies focused on AI and robotics.</p>
+
+            <div class="timeline-bottom"><span class="timeline-place">Gothenburg, Sweden</span></div>
+          </article>
+        </li>
+        <li class="timeline-entry">
+          <span class="timeline-year" aria-hidden="true">2021</span>
+          <article class="timeline-card">
+            <div class="timeline-meta"><time datetime="2021-04">Apr 2021 — Aug 2023</time></div>
+            <h2><a class="organization-link" href="https://en.inceptio.ai/product" target="_blank" rel="noopener noreferrer">Inceptio Technology <span aria-hidden="true">↗</span></a></h2><p class="timeline-role">Autonomous truck research &amp; development</p>
+            <p class="timeline-description">Developing systems for autonomous trucks and intelligent transportation.</p>
+            <details class="timeline-media">
+              <summary><span class="show-photo">Show photo</span><span class="hide-photo">Hide photo</span></summary>
+              <figure class="timeline-photo"><img src="img/inceptio/inceptio_1.jpg" alt="Autonomous truck at Inceptio Technology" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+            </details>
+            <div class="timeline-bottom"><span class="timeline-place">Shanghai, China</span></div>
+          </article>
+        </li>
+        <li class="timeline-entry">
+          <span class="timeline-year" aria-hidden="true">2019</span>
+          <article class="timeline-card">
+            <div class="timeline-meta"><time datetime="2019-12">Dec 2019 — Apr 2021</time></div>
+            <h2><a class="organization-link" href="https://www.sensetime.com/en/about-index#1" target="_blank" rel="noopener noreferrer">SenseTime EIG <span aria-hidden="true">↗</span></a></h2><p class="timeline-role">Educational robotics</p>
+            <p class="timeline-description">Rover Mini and AI education projects, connecting programming with the physical world.</p>
+            <details class="timeline-media">
+              <summary><span class="show-photo">Show photo</span><span class="hide-photo">Hide photo</span></summary>
+              <figure class="timeline-photo"><img src="img/mini/mini_3.jpg" alt="Rover Mini robots in a model city demonstration" width="1702" height="1276" loading="lazy" decoding="async"></figure>
+            </details>
+            <div class="timeline-bottom"><span class="timeline-place">Shanghai, China</span><a class="text-link" href="projects.html">View robotics projects <span aria-hidden="true">↗</span></a></div>
+          </article>
+        </li>
+        <li class="timeline-entry">
+          <span class="timeline-year" aria-hidden="true">2019</span>
+          <article class="timeline-card">
+            <div class="timeline-meta"><time datetime="2019-07">Jul — Dec 2019</time></div>
+            <h2><a class="organization-link" href="https://www.jimilab.com/" target="_blank" rel="noopener noreferrer">JIMI Technology <span aria-hidden="true">↗</span></a></h2><p class="timeline-role">Machine vision &amp; automation internship</p>
+            <p class="timeline-description">Smart pipeline and automated warehouse systems.</p>
+
+            <div class="timeline-bottom"><span class="timeline-place">China</span></div>
+          </article>
+        </li>
+        <li class="timeline-entry">
+          <span class="timeline-year" aria-hidden="true">2018</span>
+          <article class="timeline-card">
+            <div class="timeline-meta"><time datetime="2018">2018</time></div>
+            <h2><a class="organization-link" href="https://www.sensetime.com/en/about-index#1" target="_blank" rel="noopener noreferrer">SenseTime MIG <span aria-hidden="true">↗</span></a></h2><p class="timeline-role">Research internship</p>
+            <p class="timeline-description">AI prototyping and engineering in Shenzhen.</p>
+
+            <div class="timeline-bottom"><span class="timeline-place">Shenzhen, China</span></div>
+          </article>
+        </li>
+        </ol>
+        <p class="timeline-note"><span class="small-label">Earlier education</span>Bachelor's in Communication Engineering<br><a href="http://english.scnu.edu.cn/" target="_blank" rel="noopener noreferrer">South China Normal University</a></p>
+      </section>
     </div>
-    <div class="profile-about">
-      <h2>About Me</h2>
-      <p>
-        Hi! I'm Hongguang Chen, a PhD student at Chalmers University of Technology, focusing on High-Performance Computing. I have a strong background in AI, robotics, and computer vision, with hands-on experience in both academia and industry. I enjoy building systems that bridge hardware and software, and I am passionate about sharing knowledge through open-source projects and education.
-      </p>
-    </div>
-  </div>
-
-  <div class="body-wrap">
-    <!-- 导航栏 -->
-    <div class="section-nav">
-      <div class="nav-item active" data-section="timeline"><i class="fas fa-clock"></i> Timeline</div>
-      <div class="nav-item" data-section="projects"><i class="fas fa-project-diagram"></i> Projects</div>
-      <div class="nav-item" data-section="research"><i class="fas fa-graduation-cap"></i> Research</div>
-    </div>
-
-    <!-- 时间线区域 -->
-    <div class="timeline-vertical section-content active" id="timeline-section">
-      <!-- Timeline items (reverse chronological order, newest first) -->
-      
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-year">2025/09 - Present</div>
-          <div class="timeline-title">Chalmers University of Technology - Gothenburg, Sweden</div>
-          <div class="timeline-desc">PhD in Computer Science and Engineering (focus on High-Performance Computing and RISC-V).<br>
-            <a href="https://www.chalmers.se/en/" target="_blank">About Chalmers University of Technology</a>
-          </div>
-        </div>
-        <!-- <div class="timeline-detail"> -->
-          <!-- <img src="https://upload.wikimedia.org/wikipedia/en/3/3d/Chalmers_University_of_Technology_seal.png" alt="Chalmers Logo" class="timeline-img"> -->
-          <!-- <div class="timeline-detail-text"></div> -->
-        <!-- </div> -->
-      </div>
-
-    
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-year">2024/10 - 2025/02</div>
-          <div class="timeline-title">University of Tokyo - Tokyo, Japan</div>
-          <div class="timeline-desc">Exchange student program.<br>
-            <a href="https://www.u-tokyo.ac.jp/en/" target="_blank">About University of Tokyo</a>
-          </div>
-        </div>
-        <!-- <div class="timeline-detail"> -->
-          <!-- <img src="https://www.u-tokyo.ac.jp/content/400117234.png" alt="University of Tokyo Logo" class="timeline-img"> -->
-          <!-- <div class="timeline-detail-text"></div> -->
-        <!-- </div> -->
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-year">2023/08 - now</div>
-          <div class="timeline-title">Chalmers University of Technology - Gothenburg</div>
-          <div class="timeline-desc">Master's in High-Performance Computing, focusing on AI and robotics.<br>
-            <a href="https://www.chalmers.se/en/" target="_blank">About Chalmers</a>
-          </div>
-        </div>
-        <div class="timeline-detail">
-          <img src="https://logos-download.com/wp-content/uploads/2019/11/Chalmers_University_of_Technology_Logo.png" alt="Chalmers Logo" class="timeline-img">
-          <div class="timeline-detail-text">Currently pursuing a master's degree at Chalmers, specializing in high-performance computing and AI robotics.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-year">2021/04 - 2023/08</div>
-          <div class="timeline-title">Inceptio Technology - Shanghai</div>
-          <div class="timeline-desc">Worked on autonomous truck R&D, responsible for key technology implementation.<br>
-            <a href="https://en.inceptio.ai/product" target="_blank">About Inceptio</a>
-          </div>
-        </div>
-        <div class="timeline-detail">
-          <img src="img/inceptio/inceptio_1.jpg" alt="Autonomous Truck" class="timeline-img">
-          <div class="timeline-detail-text">Developed autonomous truck systems at Inceptio, gaining deep experience in intelligent transportation and cutting-edge technology.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-year">2019/12 - 2021/04</div>
-          <div class="timeline-title">SenseTime EIG - Shanghai</div>
-          <div class="timeline-desc">Joined SenseTime, worked on educational robotics projects.<br>
-            <a href="https://www.sensetime.com/en/about-index#1" target="_blank">About Sensetime</a>
-          </div>
-        </div>
-        <div class="timeline-detail">
-          <img src="img/mini/mini_1.jpg" alt="Educational Robot" class="timeline-img">
-          <div class="timeline-detail-text">Worked on Rover Mini and other educational robotics projects, promoting AI and programming education.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-year">2019/07 - 2019/12</div>
-          <div class="timeline-title">South China Normal University & JIMI Technology</div>
-          <div class="timeline-desc">Bachelor's in Communication Engineering, internship at JIMI, worked on smart pipeline and automated warehouse systems.<br>
-            <a href="http://english.scnu.edu.cn/" target="_blank">About SCNU</a>
-            <a href="https://www.jimilab.com/" target="_blank">About JIMI</a>
-          </div>
-        </div>
-        <div class="timeline-detail">
-          <img src="img/smart_vga/smart_vga.jpg" alt="JIMI Project" class="timeline-img">
-          <div class="timeline-detail-text">During the JIMI internship, participated in machine vision recognition projects, improving automation and algorithm skills.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-year">2018</div>
-          <div class="timeline-title">SenseTime MIG - Shenzhen</div>
-          <div class="timeline-desc">Research intern, participated in AI project development.<br>
-            <a href="https://www.sensetime.com/en/about-index#1" target="_blank">About Sensetime</a>
-          </div>
-        </div>
-        <div class="timeline-detail">
-          <img src="img/other/first_day.jpg" alt="2018 Internship" class="timeline-img">
-          <div class="timeline-detail-text">Interned at SenseTime Shenzhen, participated in AI prototype development and gained valuable engineering experience.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 项目区域 -->
-    <div class="projects-section section-content" id="projects-section">
-      <div class="project-grid">
-        <div class="project-card">
-          <img src="https://github.com/CXianRen/TinyML/blob/main/doc/imgs/demo_with_cache.gif?raw=true" alt="TinyML Demo" class="project-img">
-          <div class="project-info">
-            <h3>TinyML - A MiniGPT Pure C++ Implementation</h3>
-            <p>A minimal GPT-like model implementation using pure C++, reproducing the TinyStories-33M structure. Features a custom tensor library (MTB), neural network framework (MNN), and GPT-Neo style blocks (GNEO) with caching mechanism.</p>
-            <div class="project-tags">
-              <span class="tag">C++</span>
-              <span class="tag">GPT</span>
-              <span class="tag">Transformer</span>
-              <span class="tag">Deep Learning</span>
-              <span class="tag">Neural Networks</span>
-            </div>
-            <div style="margin-top: 12px;">
-              <a href="https://github.com/CXianRen/TinyML" target="_blank" style="color: #4A90E2; text-decoration: none; font-weight: 500;">
-                <i class="fab fa-github" style="margin-right: 6px;"></i>View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <img src="https://github.com/CXianRen/JLC/blob/main/doc/jlc.drawio.png?raw=true" alt="JLC Architecture" class="project-img">
-          <div class="project-info">
-            <h3>JLC - Javalette Compiler</h3>
-            <p>A comprehensive compiler for a toy language combining C and Java features. Includes BNFC-generated frontend, multi-stage type checker, and LLVM backend with support for classes, structs, enums, arrays, and runtime polymorphism.</p>
-            <div class="project-tags">
-              <span class="tag">Compiler</span>
-              <span class="tag">LLVM</span>
-              <span class="tag">Type Checker</span>
-              <span class="tag">BNFC</span>
-              <span class="tag">Language Design</span>
-            </div>
-            <div style="margin-top: 12px;">
-              <a href="https://github.com/CXianRen/JLC" target="_blank" style="color: #4A90E2; text-decoration: none; font-weight: 500;">
-                <i class="fab fa-github" style="margin-right: 6px;"></i>View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <img src="https://github.com/CXianRen/SmokeSimulator/blob/main/Doc/smoke_case_1_empty_N_50.gif?raw=true" alt="Smoke Simulator Demo" class="project-img">
-          <div class="project-info">
-            <h3>SmokeSimulator - Real-time GPU Smoke Simulation</h3>
-            <p>A real-time GPU-accelerated smoke simulator using CUDA, implementing grid-based semi-Lagrangian method with linear interpolation. Features ray marching rendering with self-shadowing and voxelization support, achieving 30fps at 50³ grid resolution.</p>
-            <div class="project-tags">
-              <span class="tag">CUDA</span>
-              <span class="tag">OpenGL</span>
-              <span class="tag">Computer Graphics</span>
-              <span class="tag">Real-time</span>
-              <span class="tag">Fluid Simulation</span>
-            </div>
-            <div style="margin-top: 12px;">
-              <a href="https://github.com/CXianRen/SmokeSimulator" target="_blank" style="color: #4A90E2; text-decoration: none; font-weight: 500;">
-                <i class="fab fa-github" style="margin-right: 6px;"></i>View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <img src="https://raw.githubusercontent.com/cy-moi/unified-particles/refs/heads/main/demo.gif?token=GHSAT0AAAAAADHDVYHV4HACUHSX73ODO76W2ERCB6Q" alt="Unified Particles Demo" class="project-img">
-          <div class="project-info">
-            <h3>Unified Particles - Physics Simulation System</h3>
-            <p>A comprehensive particle-based physics simulation system supporting fluid dynamics, cloth simulation, and interactive particle systems. Features real-time rendering and interactive controls for dynamic scene manipulation.</p>
-            <div class="project-tags">
-              <span class="tag">Physics Simulation</span>
-              <span class="tag">Particle Systems</span>
-              <span class="tag">Fluid Dynamics</span>
-              <span class="tag">Cloth Simulation</span>
-              <span class="tag">Real-time</span>
-            </div>
-            <div style="margin-top: 12px;">
-              <a href="https://github.com/cy-moi/unified-particles" target="_blank" style="color: #4A90E2; text-decoration: none; font-weight: 500;">
-                <i class="fab fa-github" style="margin-right: 6px;"></i>View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-img-gallery">
-            <img src="img/roverX/RoverX.jpg" alt="RoverX Robot" class="project-img active">
-            <img src="img/ranger/ranger.jpg" alt="Ranger Robot" class="project-img">
-            <img src="img/pro/pro_1.jpg" alt="Industrial Automation" class="project-img">
-            <div class="gallery-nav">
-              <span class="nav-dot active" data-img="0"></span>
-              <span class="nav-dot" data-img="1"></span>
-              <span class="nav-dot" data-img="2"></span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Robotics & Automation Projects</h3>
-            <p>A collection of robotics and automation projects including RoverX autonomous robot with advanced navigation and AI capabilities, Ranger search & rescue robot for hazardous environments, and industrial automation systems for manufacturing processes.</p>
-            <div style="margin-top: 12px;">
-              <a href="https://www.sensetime.com/en/product-education-01?categoryId=1169" target="_blank" style="color: #4A90E2; text-decoration: none; font-weight: 500;">
-                <i class="fas fa-external-link-alt" style="margin-right: 6px;"></i>SenseTime Education Products
-              </a>
-            </div>
-            <div class="project-tags">
-              <span class="tag">Robotics</span>
-              <span class="tag">AI</span>
-              <span class="tag">Navigation</span>
-              <span class="tag">Rescue</span>
-              <span class="tag">Automation</span>
-              <span class="tag">IoT</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 研究区域 -->
-    <div class="research-section section-content" id="research-section">
-      <div class="research-grid">
-        <!-- <div class="research-paper">
-          <h3>High-Performance Computing in Robotics</h3>
-          <p class="research-authors">H. Chen, et al.</p>
-          <p class="research-abstract">
-            Investigation of parallel computing techniques for real-time robotic control systems, 
-            focusing on GPU acceleration and distributed processing architectures.
-          </p>
-          <div class="research-tags">
-            <span class="tag">HPC</span>
-            <span class="tag">Robotics</span>
-            <span class="tag">GPU Computing</span>
-          </div>
-        </div>
-        </div> -->
-        <div class="research-paper">
-          <h3>AMST: Alternating Multimodal Skip Training</h3>
-          <p class="research-authors">H. M. A. H. Silva, H. Chen, Selpi</p>
-          <p class="research-abstract">
-            We propose AMST, a novel multimodal training strategy that adaptively skips
-            updates across modalities to balance learning dynamics. AMST improves stability,
-            reduces unnecessary computation, and achieves state-of-the-art efficiency on
-            multiple benchmarks. This repository provides the official implementation and
-            refactored, clean codebase.
-          </p>
-          <div class="research-tags">
-            <span class="tag">Multimodal Learning</span>
-            <span class="tag">Training Efficiency</span>
-          </div>
-          <a class="research-link" href="https://github.com/CXianRen/AMST" target="_blank">View on GitHub</a>
-          <a class="research-link" href="https://ecmlpkdd-storage.s3.eu-central-1.amazonaws.com/preprints/2025/research/preprint_ecml_pkdd_2025_research_372.pdf" target="_blank">Read Pre-print</a>
-        </div>
-
-      </div>
-    </div>
-  </div>
+  </main>
+  <footer class="site-footer page-shell"><p>Hongguang Chen <span>· Research &amp; engineering</span></p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></footer>
 </body>
 </html>
